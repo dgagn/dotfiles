@@ -4,6 +4,7 @@ return {
   {
     "lambdalisue/vim-suda",
     lazy = false,
+    enabled = true,
     init = function ()
       vim.cmd [[ cnoreabbrev <expr> w!! getcmdline() ==# 'w!!' ? 'SudaWrite' : 'w!!' ]]
     end

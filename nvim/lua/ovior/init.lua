@@ -23,7 +23,7 @@ function M.setup()
   local set = require('ovior.set')
   local keymap = require('ovior.keymap')
 
-  vim.cmd.colorscheme("vim")
+  vim.cmd.colorscheme("ovior")
 
   vim.g.mapleader = " "
   vim.g.maplocalleader = " "

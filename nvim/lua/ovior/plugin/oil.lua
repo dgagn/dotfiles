@@ -4,6 +4,7 @@ return {
     dependencies = {
       { "echasnovski/mini.icons", opts = {} }
     },
+    enabled = true,
     opts = {
       columns = { "icon" },
       default_file_explorer = true,

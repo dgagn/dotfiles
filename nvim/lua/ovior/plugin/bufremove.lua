@@ -3,6 +3,7 @@ return {
     "echasnovski/mini.bufremove",
     opts = {},
     lazy = false,
+    enabled = true,
     keys = {
       {
         "<leader>x",
