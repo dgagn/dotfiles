@@ -39,7 +39,7 @@ tiling_drag modifier titlebar
 for_window [class=".*"] border pixel 2
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
