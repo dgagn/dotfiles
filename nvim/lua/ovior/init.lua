@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -35,11 +35,12 @@ function M.setup()
   lazy.setup({
     spec = {
       { import = "ovior.plugin" },
+      { import = "ovior.plugin.lsp.lua" },
+      { import = "ovior.plugin.lsp.mason" },
     },
     install = { colorscheme = { "vim" } },
     checker = { enabled = false },
   })
 end
-
 
 return M
