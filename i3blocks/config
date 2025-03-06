@@ -1,21 +1,23 @@
+# i3blocks configuration file
+
 command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
-[volume-pipewire]
-command=$SCRIPT_DIR/volume-pipewire/volume-pipewire
+[volume]
+command=$SCRIPT_DIR/volume
 interval=persist
 SUBSCRIBE=1
 USE_ALSA_NAME=1
 
 [swifi]
-command=$SCRIPT_DIR/swifi/swifi
+command=$SCRIPT_DIR/swifi
 init_color=#FFFF00
 on_color=#00FF00
 interval=5
 
 [battery]
-command=$SCRIPT_DIR/battery/battery
+command=$SCRIPT_DIR/battery
 label=BAT 
 interval=30
 
