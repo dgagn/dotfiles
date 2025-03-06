@@ -17,7 +17,6 @@ return {
         {
           "<leader>ff",
           builtin.find_files,
-          desc = "Find files",
         },
         {
           "<leader>fF",
@@ -27,17 +26,14 @@ return {
               find_command = { "fd", "--type", "f", "--hidden", "--follow", "--no-ignore" },
             })
           end,
-          desc = "Find files",
         },
         {
           "<leader>fb",
           builtin.buffers,
-          desc = "Find in buffers",
         },
         {
           "<leader>fg",
           builtin.live_grep,
-          desc = "Find live grep",
         },
         {
           "<leader>fA",
@@ -47,32 +43,26 @@ return {
               search_dirs = { vim.fn.expand("%:p:h") },
             })
           end,
-          desc = "Find live grep",
         },
         {
           "<leader>fw",
           builtin.grep_string,
-          desc = "Find current word",
         },
         {
           "<leader>fD",
           builtin.diagnostics,
-          desc = "Find diagnostics",
         },
         {
           "<leader>fh",
           builtin.help_tags,
-          desc = "Find help tags",
         },
         {
           "<leader>?",
           builtin.oldfiles,
-          desc = "Find recently opened files",
         },
         {
           "<leader>hh",
           builtin.help_tags,
-          desc = "Find help for a command",
         },
         {
           "<leader>fd",
