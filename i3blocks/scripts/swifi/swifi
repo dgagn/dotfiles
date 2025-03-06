@@ -1,0 +1,31 @@
+#!/bin/bash
+
+iface=$(nmcli -t -f DEVICE,STATE dev status | grep ":connected" | cut -d: -f1 | head -n 1)
+
+if [ -z "$iface" ]; then
+    echo "Disconnected"
+    echo "Disconnected"
+    echo \#FF0000
+    exit 0
+fi
+
+ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1 == "yes" {print $2}')
+ip=$(ip -4 addr show "$iface" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+
+# Check for an active VPN connection
+vpn=$(nmcli -t -f NAME,TYPE con show --active | awk -F: '$2=="vpn" {print $1}' | head -n 1)
+
+# Build the output string based on the connection type
+if [ -z "$ssid" ]; then
+    output="Wired $ip"
+else
+    output="$ssid $ip"
+fi
+
+if [ -n "$vpn" ]; then
+    output="$output (VPN: $vpn)"
+fi
+
+echo "$output"
+echo "$output"
+echo \#00FF00

@@ -1,0 +1,24 @@
+command=$SCRIPT_DIR/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+[volume-pipewire]
+command=$SCRIPT_DIR/volume-pipewire/volume-pipewire
+interval=persist
+SUBSCRIBE=1
+USE_ALSA_NAME=1
+
+[swifi]
+command=$SCRIPT_DIR/swifi/swifi
+init_color=#FFFF00
+on_color=#00FF00
+interval=5
+
+[battery]
+command=$SCRIPT_DIR/battery/battery
+label=BAT 
+interval=30
+
+[time]
+command=date '+%Y-%m-%d %H:%M:%S'
+interval=5
