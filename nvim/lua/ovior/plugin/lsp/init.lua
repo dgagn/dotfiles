@@ -3,6 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     config = function()
       local lspconfig = require('lspconfig')
+      local on_attach = require('ovior.plugin.lsp.keymap').on_attach
 
       local servers = {
         clangd = {
