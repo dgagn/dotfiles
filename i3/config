@@ -18,7 +18,7 @@ bindsym $mod+Shift+p exec --no-startup-id scrot -s "$HOME/screenshots/%Y-%m-%d-%
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-exec --no-startup-id feh --bg-scale /usr/share/background/background.png
+exec --no-startup-id feh --bg-center /usr/share/background/background.jpg
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/volume up
