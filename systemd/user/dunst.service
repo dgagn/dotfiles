@@ -1,0 +1,13 @@
+[Unit]
+Description=Dunst Notification Daemon
+After=graphical-session.target
+Requires=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/dunst
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
