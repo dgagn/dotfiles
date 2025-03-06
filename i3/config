@@ -9,7 +9,7 @@ font pango:JetbrainsMono Nerd Font 12
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-bindsym $mod+Shift+p exec --no-startup-id scrot -s "/home/ovior/screenshots/%Y-%m-%d-%T-screenshot.png"
+bindsym $mod+Shift+p exec --no-startup-id scrot -s "$HOME/screenshots/%Y-%m-%d-%T-screenshot.png"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -20,13 +20,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id feh --bg-scale /usr/share/background/background.png
 
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-# exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id /usr/bin/volume up
 bindsym XF86AudioLowerVolume exec --no-startup-id /usr/bin/volume down
 bindsym XF86AudioMute exec --no-startup-id /usr/bin/volume mute
@@ -168,16 +162,16 @@ set $base06 #dddddd
 set $base07 #ffffff
 set $base08 #ff4136
 set $base09 #ff851b
-set $base0A #ffff60
+set $base0A #ffffff
 set $base0B #2ecc40
-set $base0C #ffff6040
+set $base0C #2ecc4040
 set $base0D #0074d9
 set $base0E #b10dc9
 set $base0F #85144b
 
 # Basic bar configuration using the Base16 variables.
 bar {
-    status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+    status_command SCRIPT_DIR="$HOME/.config/i3blocks/scripts" i3blocks
 
     colors {
         background $base00
