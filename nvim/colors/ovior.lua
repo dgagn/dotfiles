@@ -1,5 +1,3 @@
-local M = {}
-
 local colors = {
 	token = "#ff73fd",
 	include = "#6699cc",
@@ -50,7 +48,7 @@ local highlights = {
 
 	-- string
 	String = { fg = colors.string },
-	["@string.special.url"] = { fg = colors.string },
+	["@string.special.url"] = { link = "String" },
 	Constant = { fg = colors.constant },
 	["@constant.builtin"] = { fg = colors.constant, bold = true },
 	Number = { fg = colors.number },
@@ -61,7 +59,7 @@ local highlights = {
 	-- type
 	Type = { fg = colors.type },
 	["@type.builtin"] = { fg = colors.type, bold = true },
-	Property = { link = "Type" },
+	Property = { fg = colors.type },
 	["@property"] = { link = "Property" },
 	["@tag.builtin"] = { fg = colors.type },
 
