@@ -1,4 +1,4 @@
-local colors = {
+local palette1 = {
 	token = "#ff73fd",
 	include = "#6699cc",
 	type = "#9ccfd8",
@@ -25,65 +25,69 @@ vim.cmd("highlight clear")
 vim.o.background = "dark"
 vim.g.colors_name = "ovior"
 
-local highlights = {
-	Normal = { bg = "None" },
-	DiagnosticUnderlineError = { undercurl = true, sp = "NvimLightRed" },
-	DiagnosticUnderlineInfo = { undercurl = true, sp = "NvimLightCyan" },
-	DiagnosticUnderlineHint = { undercurl = true, sp = colors.proc },
-	DiagnosticUnderlineWarn = { undercurl = true, sp = "NvimLightYellow" },
+local function set_colors(palette)
+	local highlights = {
+		Normal = { bg = "None" },
+		DiagnosticUnderlineError = { undercurl = true, sp = "NvimLightRed" },
+		DiagnosticUnderlineInfo = { undercurl = true, sp = "NvimLightCyan" },
+		DiagnosticUnderlineHint = { undercurl = true, sp = palette.proc },
+		DiagnosticUnderlineWarn = { undercurl = true, sp = "NvimLightYellow" },
 
-	-- token
-	Keyword = { fg = colors.token },
-	["@keyword"] = { link = "Keyword" },
-	["@lsp.type.formatSpecifier"] = { link = "Keyword" },
+		-- token
+		Keyword = { fg = palette.token },
+		["@keyword"] = { link = "Keyword" },
+		["@lsp.type.formatSpecifier"] = { link = "Keyword" },
 
-	-- operators
-	Operator = { fg = colors.operator },
-	Delimiter = { fg = colors.operator },
-	["@tag.delimiter"] = { link = "Operator" },
+		-- operators
+		Operator = { fg = palette.operator },
+		Delimiter = { fg = palette.operator },
+		["@tag.delimiter"] = { link = "Operator" },
 
-	-- include
-	Include = { fg = colors.include },
-	["@module"] = { link = "Include" },
+		-- include
+		Include = { fg = palette.include },
+		["@module"] = { link = "Include" },
 
-	-- string
-	String = { fg = colors.string },
-	["@string.special.url"] = { link = "String" },
-	Constant = { fg = colors.constant },
-	["@constant.builtin"] = { fg = colors.constant, bold = true },
-	Number = { fg = colors.number },
-	Boolean = { fg = colors.boolean },
+		-- string
+		String = { fg = palette.string },
+		["@string.special.url"] = { link = "String" },
+		Constant = { fg = palette.constant },
+		["@constant.builtin"] = { fg = palette.constant, bold = true },
+		Number = { fg = palette.number },
+		Boolean = { fg = palette.boolean },
 
-	["@lsp.typemod.variable.mutable"] = { underline = true },
+		["@lsp.typemod.variable.mutable"] = { underline = true },
 
-	-- type
-	Type = { fg = colors.type },
-	["@type.builtin"] = { fg = colors.type, bold = true },
-	Property = { fg = colors.type },
-	["@property"] = { link = "Property" },
-	["@tag.builtin"] = { fg = colors.type },
+		-- type
+		Type = { fg = palette.type },
+		["@type.builtin"] = { fg = palette.type, bold = true },
+		Property = { fg = palette.type },
+		["@property"] = { link = "Property" },
+		["@tag.builtin"] = { fg = palette.type },
 
-	-- function
-	Function = { fg = colors.func },
+		-- function
+		Function = { fg = palette.func },
 
-	-- proc
-	["@lsp.type.decorator"] = { fg = colors.proc },
-	["@lsp.typemod.attributeBracket.attribute"] = { fg = colors.proc },
-	["@lsp.type.deriveHelper"] = { fg = colors.proc },
-	["@variable.parameter"] = { fg = colors.proc },
-	["@lsp.type.macro"] = { fg = colors.proc },
-	["@tag.attribute"] = { fg = colors.proc },
+		-- proc
+		["@lsp.type.decorator"] = { fg = palette.proc },
+		["@lsp.typemod.attributeBracket.attribute"] = { fg = palette.proc },
+		["@lsp.type.deriveHelper"] = { fg = palette.proc },
+		["@variable.parameter"] = { fg = palette.proc },
+		["@lsp.type.macro"] = { fg = palette.proc },
+		["@tag.attribute"] = { fg = palette.proc },
 
-	--
-	["@variable.builtin"] = { fg = colors.self, bold = true },
+		--
+		["@variable.builtin"] = { fg = palette.self, bold = true },
 
-	-- special
-	["@lsp.type.typeAlias"] = { fg = colors.special },
-	["@lsp.type.lifetime"] = { fg = colors.special },
-	["@tag"] = { fg = colors.special },
-}
+		-- special
+		["@lsp.type.typeAlias"] = { fg = palette.special },
+		["@lsp.type.lifetime"] = { fg = palette.special },
+		["@tag"] = { fg = palette.special },
+	}
 
 
-for group, opts in pairs(highlights) do
-	vim.api.nvim_set_hl(0, group, opts)
+	for group, opts in pairs(highlights) do
+		vim.api.nvim_set_hl(0, group, opts)
+	end
 end
+
+set_colors(palette1)
