@@ -40,6 +40,7 @@ for_window [class=".*"] border pixel 2
 
 # start a terminal
 bindsym $mod+Return exec kitty
+bindsym $mod+b exec google-chrome-stable
 
 # kill focused window
 bindsym $mod+Shift+q kill

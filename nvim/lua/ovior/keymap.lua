@@ -34,8 +34,8 @@ function M.setup()
   vim.keymap.set("n", "g$", "<cmd>blast<cr>")
   vim.keymap.set("n", "g^", "<cmd>bfirst<cr>")
 
-  vim.keymap.set("n", "<down>", vim.diagnostic.goto_next, { desc = "Goto next diagnostic" })
-  vim.keymap.set("n", "<up>", vim.diagnostic.goto_prev, { desc = "Goto previous diagnostic" })
+  vim.keymap.set("n", "<down>", vim.diagnostic.goto_next)
+  vim.keymap.set("n", "<up>", vim.diagnostic.goto_prev)
 
   vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
   vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })

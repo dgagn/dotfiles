@@ -1,4 +1,5 @@
 {
+  "blink.cmp": { "branch": "main", "commit": "dcda20d3aa345025699a920c45b0a0603551f41d" },
   "diagflow.nvim": { "branch": "main", "commit": "b13321b517ff64bf42eeac2214085d3c76d83a0d" },
   "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
   "gitsigns.nvim": { "branch": "main", "commit": "4c40357994f386e72be92a46f41fc1664c84c87d" },

@@ -1,13 +1,34 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    dependencies = { 'saghen/blink.cmp' },
     config = function()
       local lspconfig = require('lspconfig')
       local on_attach = require('ovior.plugin.lsp.keymap').on_attach
 
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
       local servers = {
+        rust_analyzer = {
+          enabled = true,
+          capabalities = capabilities,
+          cmd = {
+            "rustup", "run", "stable", "rust-analyzer"
+          },
+          settings = {
+            ["rust-analyzer"] = {
+              checkOnSave = {
+                command = "clippy"
+              },
+              cargo = {
+                allFeatures = true,
+              },
+              diagnostics = {
+                enable = true,
+              }
+            }
+          }
+        },
         clangd = {
-          -- c and c++
           enabled = true,
           settings = {}
         },

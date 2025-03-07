@@ -7,7 +7,10 @@ function M.setup()
     group = autocmd.augroup("whitespace"),
     pattern = "*",
     callback = function()
-      vim.api.nvim_call_function("matchadd", { "ExtraWhitespace", "\\s\\+$" })
+      if vim.fn.exists("b:current_syntax") == 1 then
+        print(vim.bo.filetype)
+        vim.api.nvim_call_function("matchadd", { "ExtraWhitespace", "\\s\\+$" })
+      end
     end,
   })
 end
