@@ -12,7 +12,6 @@ return {
         end,
       },
       {
-        "n",
         "<leader>X",
         function()
           local bufremove = require("mini.bufremove")

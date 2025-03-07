@@ -1,14 +1,26 @@
 local M = {}
 
-M.colors = {
-	token = "#ffff60",
+local colors = {
+	token = "#ff73fd",
+	include = "#6699cc",
+	type = "#9ccfd8",
+	func = "#96cbfe",
+
+	-- string color
 	string = "#f6c177",
-	-- string = "#87ffaf",
-	special = "#c4a7e7",
-	special2 = "#ff73fd",
-	type = "#4ec9b0",
-	typer = "#81dbbf",
-	alias = "#16baac",
+	constant = "#f6c177",
+	number = "#f6c177",
+	boolean = "#ebbcba",
+
+	-- purple
+	proc = "#c4a7e7",
+
+	-- self
+	self = "#eb6f92",
+
+	special = "#16baac",
+
+	operator = "#908caa",
 }
 
 vim.cmd("highlight clear")
@@ -16,22 +28,61 @@ vim.o.background = "dark"
 vim.g.colors_name = "ovior"
 
 local highlights = {
-	Keyword = { fg = M.colors.token },
 	Normal = { bg = "None" },
-	String = { fg = M.colors.string },
-	["@lsp.type.formatSpecifier.rust"] = { fg = M.colors.special },
-	["@variable.builtin.rust"] = { fg = M.colors.special2 },
-	["@lsp.type.namespace.rust"] = { fg = M.colors.type },
-	["@lsp.typemod.variable.mutable.rust"] = { underline = true },
-	Type = { fg = M.colors.typer },
-	["@lsp.type.lifetime.rust"] = { fg = M.colors.alias },
-	["@lsp.type.typeParameter"] = { fg = M.colors.alias },
-	["@lsp.type.typeAlias"] = { fg = M.colors.alias },
-	["tsxTagName"] = { fg = M.colors.alias },
 	DiagnosticUnderlineError = { undercurl = true, sp = "NvimLightRed" },
 	DiagnosticUnderlineInfo = { undercurl = true, sp = "NvimLightCyan" },
-	DiagnosticUnderlineHint = { undercurl = true, sp = "NvimLightBlue" },
+	DiagnosticUnderlineHint = { undercurl = true, sp = colors.proc },
 	DiagnosticUnderlineWarn = { undercurl = true, sp = "NvimLightYellow" },
+
+	-- token
+	Keyword = { fg = colors.token },
+	["@keyword"] = { link = "Keyword" },
+	["@lsp.type.formatSpecifier"] = { link = "Keyword" },
+
+	-- operators
+	Operator = { fg = colors.operator },
+	Delimiter = { fg = colors.operator },
+	["@tag.delimiter"] = { link = "Operator" },
+
+	-- include
+	Include = { fg = colors.include },
+	["@module"] = { link = "Include" },
+
+	-- string
+	String = { fg = colors.string },
+	["@string.special.url"] = { fg = colors.string },
+	Constant = { fg = colors.constant },
+	["@constant.builtin"] = { fg = colors.constant, bold = true },
+	Number = { fg = colors.number },
+	Boolean = { fg = colors.boolean },
+
+	["@lsp.typemod.variable.mutable"] = { underline = true },
+
+	-- type
+	Type = { fg = colors.type },
+	["@type.builtin"] = { fg = colors.type, bold = true },
+	Property = { link = "Type" },
+	["@property"] = { link = "Property" },
+	["@tag.builtin"] = { fg = colors.type },
+
+	-- function
+	Function = { fg = colors.func },
+
+	-- proc
+	["@lsp.type.decorator"] = { fg = colors.proc },
+	["@lsp.typemod.attributeBracket.attribute"] = { fg = colors.proc },
+	["@lsp.type.deriveHelper"] = { fg = colors.proc },
+	["@variable.parameter"] = { fg = colors.proc },
+	["@lsp.type.macro"] = { fg = colors.proc },
+	["@tag.attribute"] = { fg = colors.proc },
+
+	--
+	["@variable.builtin"] = { fg = colors.self, bold = true },
+
+	-- special
+	["@lsp.type.typeAlias"] = { fg = colors.special },
+	["@lsp.type.lifetime"] = { fg = colors.special },
+	["@tag"] = { fg = colors.special },
 }
 
 
