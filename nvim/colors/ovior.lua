@@ -66,6 +66,7 @@ local function set_colors(palette)
 
 		-- function
 		Function = { fg = palette.func },
+		["@function.builtin"] = { fg = palette.func, bold = true },
 
 		-- proc
 		["@lsp.type.decorator"] = { fg = palette.proc },
