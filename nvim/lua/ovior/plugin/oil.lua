@@ -4,7 +4,6 @@ return {
     dependencies = {
       { "echasnovski/mini.icons", opts = {} }
     },
-    enabled = true,
     opts = {
       columns = { "icon" },
       default_file_explorer = true,
@@ -18,12 +17,12 @@ return {
       },
       view_options = {
         show_hidden = true,
-        is_always_hidden = function(name, _)
+        is_always_hidden = function(name, bufnr)
           return name == ".DS_Store" or name == "thumbs.db" or name == ".."
         end,
       },
     },
-    config = function(opts)
+    config = function(_, opts)
       local oil = require('oil')
       local autocmd = require('ovior.autocmd')
       vim.api.nvim_create_autocmd("FileType", {
