@@ -63,6 +63,8 @@ local function set_colors(palette)
 		Property = { fg = palette.type },
 		["@property"] = { link = "Property" },
 		["@tag.builtin"] = { fg = palette.type },
+		["Directory"] = { fg = palette.type },
+		Special = { fg = palette.type },
 
 		-- function
 		Function = { fg = palette.func },
@@ -75,6 +77,7 @@ local function set_colors(palette)
 		["@variable.parameter"] = { fg = palette.proc },
 		["@lsp.type.macro"] = { fg = palette.proc },
 		["@tag.attribute"] = { fg = palette.proc },
+		Statement = { fg = palette.proc },
 
 		--
 		["@variable.builtin"] = { fg = palette.self, bold = true },
