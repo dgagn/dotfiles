@@ -3,6 +3,7 @@ local M = {}
 function M.setup()
   vim.keymap.set("n", "s", "<nop>", { silent = true })
   vim.keymap.set("n", "<c-b>", "<nop>", { silent = true })
+  vim.keymap.set("i", "<c-k>", "<nop>", { silent = true })
   vim.keymap.set("i", "<c-b>", "<nop>", { silent = true })
   vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
   vim.keymap.set("v", "u", "<nop>")
