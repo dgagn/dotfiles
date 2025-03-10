@@ -1,0 +1,5 @@
+#!/bin/bash
+
+current_session="$(tmux display-message -p '#S')"
+tmux ls | awk -F: -v cs="$current_session" '/^session_/ { if ($1 != cs) print $1 }' | xargs -r -I {} tmux kill-session -t {}
+
