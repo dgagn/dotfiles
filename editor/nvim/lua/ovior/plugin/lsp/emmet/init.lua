@@ -18,8 +18,4 @@ function M.expand_cmp(cmp)
   cmp.accept({ index = idx })
 end
 
-function M.setup()
-  -- check the file type and insert a new autocmd
-end
-
 return M
