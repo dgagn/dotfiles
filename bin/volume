@@ -1,11 +1,13 @@
 #!/bin/bash
 
+# update the volume with a notification
+
 update_notification() {
     sleep 0.1
 
     current_vol=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '/%/ {print $5; exit}')
     mute_state=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')
-    
+
     vol_num="${current_vol%\%}"
 
     if [ "$mute_state" = "yes" ]; then

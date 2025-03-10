@@ -10,6 +10,23 @@ set __fish_git_prompt_showupstream 'none'
 set __fish_git_prompt_use_informative_chars 'yes'
 set -g fish_prompt_pwd_dir_length 3
 
+# https://wiki.archlinux.org/title/XDG_Base_Directory
+set -x XDG_CONFIG_HOME "$HOME/.config"
+set -x XDG_CACHE_HOME "$HOME/var/cache"
+set -x XDG_STATE_HOME "$HOME/.local/state"
+set -x XDG_DATA_HOME "$HOME/.local/share"
+set -x XDG_STATE_HOME "$HOME/.local/state"
+set -x XDG_DATA_DIRS "/usr/local/share:/usr/share"
+set -x XDG_CONFIG_DIRS "/etc/xdg"
+
+set -x PYTHON_HISTORY "$HOME/var/history/python"
+set -x NODE_REPL_HISTORY "$HOME/var/history/node"
+set -x PSQL_HISTORY "$HOME/var/history/psql"
+set -x MYSQL_HISTFILE "$HOME/var/history/mysql"
+set -x REDISCLI_HISTFILE "$HOME/var/history/redis"
+set -x GDBHISTFILE "$HOME/var/history/gdb"
+
 # only true editor
-export EDITOR="nvim"
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.config/composer/vendor/bin:$PATH"
+set -x EDITOR "nvim"
+set -x PATH "$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.config/composer/vendor/bin:$PATH"
+

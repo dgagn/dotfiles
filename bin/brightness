@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# update the brightness having at least 10%
+
 MIN_PERCENT=10
 
 if [ -z "$1" ]; then
