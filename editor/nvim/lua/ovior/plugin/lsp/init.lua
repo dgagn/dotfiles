@@ -5,11 +5,13 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
       local on_attach = require('ovior.plugin.lsp.keymap').on_attach
+      local emmet = require('ovior.plugin.lsp.emmet')
+      emmet.setup()
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local servers = {
         rust_analyzer = {
-          enabled = true,
+          enable = true,
           capabilities = capabilities,
           cmd = {
             "rustup", "run", "nightly", "rust-analyzer"
@@ -29,22 +31,28 @@ return {
           }
         },
         clangd = {
-          enabled = true,
+          enable = true,
           settings = {}
         },
         lua_ls = {
-          enabled = true,
+          enable = true,
           settings = {
             Lua = {
               workspace = { checkThirdParty = false },
               telemetry = { enable = false },
             },
           }
-        }
+        },
+        emmet_language_server = {
+          enable = true,
+          filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
+          settings = {
+          },
+        },
       }
 
       for server, details in pairs(servers) do
-        if details.enabled then
+        if details.enable then
           lspconfig[server].setup({
             on_attach = details.on_attach or on_attach,
             settings = details.settings,

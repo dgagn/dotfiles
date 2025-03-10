@@ -1,9 +1,16 @@
+local emmet = require('ovior.plugin.lsp.emmet')
 local M = {
   {
     'saghen/blink.cmp',
     version = 'v0.13.1',
     opts = {
-      keymap = { preset = 'default' },
+      keymap = {
+        preset = 'default',
+        ['<tab>'] = {
+          emmet.expand_cmp,
+          'fallback',
+        },
+      },
 
       completion = {
         list = {
