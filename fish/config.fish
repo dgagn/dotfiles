@@ -51,10 +51,7 @@ alias vim 'nvim'
 alias mysql 'mariadb'
 alias gcm 'git commit -m'
 alias gcam 'git commit -am'
-alias gco 'git checkout'
-alias gcb 'git checkout -b'
-alias gpl 'git pull'
-alias gps "git push --set-upstream origin git rev-parse --abbrev-ref HEAD"
+alias gps "git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)"
 alias gd 'git diff'
 alias gdc 'git diff --cached'
 alias gds 'git diff --staged'
