@@ -9,6 +9,7 @@ local M = {
         preset = 'default',
         ['<tab>'] = {
           emmet.expand_cmp,
+          'snippet_forward',
           'fallback',
         },
       },
