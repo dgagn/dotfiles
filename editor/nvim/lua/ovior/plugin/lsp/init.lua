@@ -5,8 +5,6 @@ return {
     config = function()
       local lspconfig = require('lspconfig')
       local on_attach = require('ovior.plugin.lsp.keymap').on_attach
-      local emmet = require('ovior.plugin.lsp.emmet')
-      emmet.setup()
 
       local capabilities = require('blink.cmp').get_lsp_capabilities()
       local servers = {
