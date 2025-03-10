@@ -10,9 +10,9 @@ return {
       local servers = {
         rust_analyzer = {
           enabled = true,
-          capabalities = capabilities,
+          capabilities = capabilities,
           cmd = {
-            "rustup", "run", "stable", "rust-analyzer"
+            "rustup", "run", "nightly", "rust-analyzer"
           },
           settings = {
             ["rust-analyzer"] = {

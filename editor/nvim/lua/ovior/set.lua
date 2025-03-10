@@ -1,5 +1,15 @@
 local M = {}
 
+local function xdg_data_home(path)
+  local value = os.getenv("XDG_DATA_HOME")
+
+  if value == nil then
+    return os.getenv("HOME") .. "/.local/share/" .. path
+  else
+    return value .. "/" .. path
+  end
+end
+
 function M.setup()
   vim.opt.hlsearch = false
 
@@ -17,7 +27,7 @@ function M.setup()
   vim.opt.swapfile = false
   vim.opt.undofile = true
   vim.opt.undolevels = 100000
-  vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+  vim.opt.undodir = xdg_data_home("nvim/undo")
 
   -- no mouse please
   vim.opt.mouse = ""

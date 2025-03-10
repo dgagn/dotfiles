@@ -6,6 +6,12 @@ local M = {
       keymap = { preset = 'default' },
 
       completion = {
+        list = {
+          selection = {
+            preselect = true,
+            auto_insert = false,
+          }
+        },
         menu = {
           draw = {
             components = {
@@ -15,7 +21,6 @@ local M = {
                   local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
                   return kind_icon
                 end,
-                -- Optionally, you may also use the highlights from mini.icons
                 highlight = function(ctx)
                   local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
                   return hl
