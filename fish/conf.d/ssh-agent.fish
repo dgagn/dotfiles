@@ -8,7 +8,8 @@ if test -S "$SSH_AUTH_SOCK"
     end
 else
     if set -q SSH_AGENT_PID
-        kill $SSH_AGENT_PID
+        # ignore errors
+        kill $SSH_AGENT_PID 2> /dev/null
     end
 
     rm -f "$SSH_AUTH_SOCK"

@@ -9,7 +9,8 @@ font pango:JetbrainsMono Nerd Font Mono 12
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-bindsym $mod+Shift+p exec --no-startup-id scrot -s "$HOME/screenshots/%Y-%m-%d-%T-screenshot.png"
+bindsym $mod+p exec --no-startup-id scrot -u "$HOME/var/screenshots/%Y-%m-%d-%T-screenshot.png"
+bindsym $mod+Shift+p exec --no-startup-id scrot --select --line mode=edge "$HOME/var/screenshots/%Y-%m-%d-%T-screenshot.png"
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -18,16 +19,15 @@ bindsym $mod+Shift+p exec --no-startup-id scrot -s "$HOME/screenshots/%Y-%m-%d-%
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-exec --no-startup-id feh --bg-center $HOME/.local/share/background/background.jpg
+exec --no-startup-id feh --bg-center $HOME/dotfiles/share/background/background.jpg
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.local/bin/volume up
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.local/bin/volume down
-bindsym XF86AudioMute exec --no-startup-id $HOME/.local/bin/volume mute
-bindsym XF86AudioMicMute exec --no-startup-id $HOME/.local/bin/volume micmute
-
-bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.local/bin/brightness +10
-bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.local/bin/brightness -10
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/dotfiles/bin/volume up
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/dotfiles/bin/volume down
+bindsym XF86AudioMute exec --no-startup-id $HOME/dotfiles/bin/volume mute
+bindsym XF86AudioMicMute exec --no-startup-id $HOME/dotfiles/bin/volume micmute
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/dotfiles/bin/brightness +10
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/dotfiles/bin/brightness -10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

@@ -39,7 +39,6 @@ function M.setup()
       { import = "ovior.plugin.lsp.mason" },
       { import = "ovior.plugin.lsp.cmp" },
     },
-    install = { colorscheme = { "vim" } },
     checker = { enabled = false },
   })
 end
