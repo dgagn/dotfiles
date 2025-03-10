@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# update the volume with a notification
-
 update_notification() {
     sleep 0.1
 

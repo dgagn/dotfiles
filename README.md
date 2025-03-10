@@ -7,7 +7,7 @@ stow -vt "$XDG_CONFIG_HOME" shell
 ```
 
 ```sh
-stow -vt "$XDG_CONFIG_HOME" shell
+stow -vt "$XDG_CONFIG_HOME" gui
 ```
 
 ```sh

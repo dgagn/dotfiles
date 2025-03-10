@@ -168,7 +168,7 @@ set $base08 #ff4136
 set $base09 #ff851b
 set $base0A #ffffff
 set $base0B #2ecc40
-set $base0C #06989a40
+set $base0C #96cbfe40
 set $base0D #0074d9
 set $base0E #b10dc9
 set $base0F #85144b
