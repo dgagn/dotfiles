@@ -29,4 +29,3 @@ set -x GDBHISTFILE "$HOME/var/history/gdb"
 # only true editor
 set -x EDITOR "nvim"
 set -x PATH "$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.config/composer/vendor/bin:$PATH"
-
