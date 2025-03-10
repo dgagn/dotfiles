@@ -9,3 +9,4 @@ alias gds 'git diff --staged'
 alias gp 'git push'
 alias clip 'fish_clipboard_copy'
 alias icat 'kitten icat'
+alias gs "git status"
