@@ -23,7 +23,7 @@ def parse_xrandr_output(output):
                     hdmi_resolution = res_line.split()[0]
                     break
             break
-    
+
     return hdmi_connected, hdmi_resolution
 
 
@@ -46,7 +46,7 @@ def main():
     """Main function to handle the display configuration based on HDMI-1 status."""
     xrandr_output = get_xrandr_output()
     hdmi_connected, hdmi_resolution = parse_xrandr_output(xrandr_output)
-    
+
     if hdmi_connected:
         if hdmi_resolution in ["2560x1080", "1920x1080"]:
             set_hdmi_to_right_of_edp(hdmi_resolution)
