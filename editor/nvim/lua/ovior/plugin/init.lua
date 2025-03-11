@@ -1,6 +1,6 @@
 return {
   "tpope/vim-sleuth",
-  "tpope/vim-repeat",
+  { "tpope/vim-repeat", event = "VeryLazy" },
   {
     "lambdalisue/vim-suda",
     lazy = false,
@@ -80,5 +80,17 @@ return {
         },
       }
     end
-  }
+  },
+  {
+    "AndrewRadev/splitjoin.vim",
+    config = function()
+      vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+      vim.g.splitjoin_trailing_comma = 1
+      vim.g.splitjoin_php_method_chain_full = 1
+    end,
+  },
+  {
+    "tpope/vim-surround",
+    event = "VeryLazy",
+  },
 }
