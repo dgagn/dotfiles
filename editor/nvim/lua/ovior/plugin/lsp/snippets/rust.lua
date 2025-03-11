@@ -327,6 +327,36 @@ function rust.setup()
         condition = in_file_context(),
         show_condition = in_file_context(),
       }
+    ),
+    s(
+      "f",
+      fmt(
+        [[
+        fn {}({}) {{
+            {}
+        }}
+        ]],
+        { i(1, "name"), i(2), i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context(),
+      }
+    ),
+    s(
+      "af",
+      fmt(
+        [[
+        async fn {}({}) {{
+            {}
+        }}
+        ]],
+        { i(1, "name"), i(2), i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context(),
+      }
     )
   })
 end
