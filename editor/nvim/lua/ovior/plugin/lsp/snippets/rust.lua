@@ -278,6 +278,56 @@ function rust.setup()
         show_condition = in_file_context(),
       }
     ),
+    s(
+      "modte",
+      fmt(
+        [[
+        #[cfg(test)]
+        mod tests {{
+            use super::*;
+
+            {}
+        }}
+        ]],
+        { i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context(),
+      }
+    ),
+    s(
+      "te",
+      fmt(
+        [[
+        #[test]
+        fn {}() {{
+            {}
+        }}
+        ]],
+        { i(1, "test"), i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context()
+      }
+    ),
+    s(
+      "ate",
+      fmt(
+        [[
+        #[tokio::test]
+        async fn {}() {{
+            {}
+        }}
+        ]],
+        { i(1, "test"), i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context(),
+      }
+    )
   })
 end
 
