@@ -35,8 +35,6 @@ function M.setup()
   lazy.setup({
     spec = {
       { import = "ovior.plugin" },
-      { import = "ovior.plugin.lsp.lua" },
-      { import = "ovior.plugin.lsp.mason" },
       { import = "ovior.plugin.lsp.cmp" },
     },
     checker = { enabled = false },

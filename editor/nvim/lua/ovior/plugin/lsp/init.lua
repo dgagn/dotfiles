@@ -82,4 +82,51 @@ return {
     "j-hui/fidget.nvim",
     opts = {},
   },
+  {
+    'rust-lang/rust.vim',
+    ft = { "rust" },
+    config = function()
+      vim.g.rustfmt_autosave = 1
+      vim.g.rustfmt_emit_files = 1
+      vim.g.rustfmt_fail_silently = 0
+      vim.g.rust_clip_command = 'wl-copy'
+    end
+  },
+  {
+    "folke/lazydev.nvim",
+    enabled = true,
+    ft = "lua",
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+  {
+    "williamboman/mason.nvim",
+    opts = {}
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = {
+      ensure_installed = {
+        "lua_ls"
+      }
+    }
+  },
+  {
+    "dgagn/diagflow.nvim",
+    event = "LspAttach",
+    enabled = true,
+    opts = {
+      scope = "line",
+      placement = "top",
+      update_event = {
+        "BufReadPost",
+        "DiagnosticChanged",
+      },
+    },
+  }
 }

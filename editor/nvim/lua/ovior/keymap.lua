@@ -9,6 +9,9 @@ function M.setup()
   vim.keymap.set("v", "u", "<nop>")
   vim.keymap.set("i", "<S-Tab>", "<c-d>")
 
+  vim.keymap.set("n", "<leader>x", "<cmd>bd<cr>")
+  vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<cr>")
+
   vim.keymap.set("n", "<C-d>", "<C-d>zz")
   vim.keymap.set("n", "<C-u>", "<C-u>zz")
   vim.keymap.set("i", "<C-u>", "<nop>")
