@@ -3,6 +3,8 @@ set fish_greeting
 # dont fuck my cursor with no line stuff
 set fish_cursor_default block
 
+set fish_color_command 96cbfe
+
 set -x LS_COLORS "di=38;2;150;203;254:$LS_COLORS"
 
 set __fish_git_prompt_showuntrackedfiles 'yes'
