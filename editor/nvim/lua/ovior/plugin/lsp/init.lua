@@ -48,15 +48,15 @@ return {
         },
         ts_ls = {
           enable = true,
-          settings = {}
+          settings = {},
         },
         intelephense = {
           enable = true,
-          settings = {}
+          settings = {},
         },
         tailwindcss = {
           enable = true,
-          settings = {}
+          settings = {},
         },
         pyright = {
           enable = true,
@@ -67,7 +67,7 @@ return {
                 typeCheckingMode = "off",
               },
             },
-          }
+          },
         },
         emmet_language_server = {
           enable = true,
@@ -161,15 +161,15 @@ return {
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
-      'nvimtools/none-ls-extras.nvim',
+      "nvimtools/none-ls-extras.nvim",
     },
     opts = function()
       local nls = require("null-ls")
       return {
         sources = {
           require("none-ls.formatting.ruff_format"),
-        }
+        },
       }
-    end
-  }
+    end,
+  },
 }

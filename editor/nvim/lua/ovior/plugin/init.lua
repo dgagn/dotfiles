@@ -89,7 +89,7 @@ return {
     end,
   },
   {
-    "tpope/vim-surround",
-    event = "VeryLazy",
-  },
+    "echasnovski/mini.surround",
+    opts = {},
+  }
 }

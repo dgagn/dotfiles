@@ -6,27 +6,32 @@ return {
       "echasnovski/mini.icons",
       {
         "L3MON4D3/LuaSnip",
-        version = 'v2.*',
+        version = "v2.*",
         config = function()
-          require("luasnip.loaders.from_snipmate").load({ path = { "./snippets" } })
-        end
+          require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+        end,
       },
     },
     opts = function()
       local emmet = require("ovior.plugin.lsp.emmet")
       local snip = require("ovior.plugin.lsp.snip")
+      local rustsnip = require("ovior.plugin.lsp.snippets.rust")
+
+      rustsnip.setup()
 
       return {
-        snippets = { preset = 'luasnip' },
+        snippets = { preset = "luasnip" },
 
         keymap = {
           preset = "default",
           ["<tab>"] = {
             emmet.expand_cmp,
             snip.expand_cmp,
-            "snippet_forward",
             "fallback",
           },
+          ["<S-Tab>"] = { "fallback" },
+          ["<c-l>"] = { "snippet_forward", "fallback" },
+          ["<c-h>"] = { "snippet_backward", "fallback" },
         },
         completion = {
           list = {
@@ -71,9 +76,6 @@ return {
 
         sources = {
           default = { "lsp", "path", "snippets", "buffer" },
-
-          providers = {
-          },
         },
 
         signature = { enabled = false },

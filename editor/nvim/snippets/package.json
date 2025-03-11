@@ -1,0 +1,15 @@
+{
+    "name": "ovior-snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "lua",
+                "path": "./lua.json"
+            },
+            {
+                "language": "rust",
+                "path": "./rust.json"
+            }
+        ]
+    }
+}
