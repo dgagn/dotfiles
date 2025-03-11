@@ -1,40 +1,8 @@
+local snippets = require("ovior.plugin.lsp.snippets")
+
+local in_context = snippets.in_context
+
 local rust = {}
-
-local function get_last_valid_node()
-  local ts_utils = require("nvim-treesitter.ts_utils")
-  local node = ts_utils.get_node_at_cursor()
-  while node and node:type() == "ERROR" do
-    node = node:parent()
-  end
-  return node
-end
-
-local function in_context(types)
-  return function()
-    local node = get_last_valid_node()
-    if not node then
-      return false
-    end
-    local type = node:type()
-    print("type: " .. type)
-    local value = false
-    for i, t in ipairs(types) do
-      if t == "_expr" then
-        if type:find("expression") then
-          print("expression: " .. type)
-          value = true
-          break
-        end
-      end
-      if type == t then
-        value = true
-        break
-      end
-    end
-    return value
-  end
-end
-
 
 local function in_file_context(additional)
   local contexts = { "source_file", "declaration_list" }
@@ -43,14 +11,13 @@ local function in_file_context(additional)
       table.insert(contexts, v)
     end
   end
-  return in_context(contexts)
+  return snippets.in_context(contexts)
 end
 
 function rust.setup()
   local ls = require("luasnip")
   local s, i, t = ls.s, ls.insert_node, ls.text_node
   local fmt = require("luasnip.extras.fmt").fmt
-  local c = ls.choice_node
 
   ls.add_snippets("rust", {
     s("d", fmt("#[derive({})]", { i(1, "Debug") }), {

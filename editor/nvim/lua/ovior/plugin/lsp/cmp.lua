@@ -16,13 +16,9 @@ return {
       local emmet = require("ovior.plugin.lsp.emmet")
       local snip = require("ovior.plugin.lsp.snip")
       local rustsnip = require("ovior.plugin.lsp.snippets.rust")
-
+      local luasnip = require("ovior.plugin.lsp.snippets.lua")
       rustsnip.setup()
-
-      vim.api.nvim_set_keymap("i", "<C-j>", "<Plug>luasnip-next-choice", {})
-      vim.api.nvim_set_keymap("s", "<C-j>", "<Plug>luasnip-next-choice", {})
-      vim.api.nvim_set_keymap("i", "<C-k>", "<Plug>luasnip-prev-choice", {})
-      vim.api.nvim_set_keymap("s", "<C-k>", "<Plug>luasnip-prev-choice", {})
+      luasnip.setup()
 
       return {
         snippets = { preset = "luasnip" },
