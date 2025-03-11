@@ -10,47 +10,5 @@
         "body": [
 	    "#[tokio::test]", "async fn ${1:name}($2)$3 {", "\t$0", "}"
 	]
-    },
-    "if let": {
-        "prefix": "ifl",
-        "body": ["if let ${1:value} = {2:expr} {", "\t$0", "}"]
-    },
-    "if let some": {
-        "prefix": "ifls",
-        "body": ["if let Some(${1:value}) = ${2:expr} {", "\t$0", "}"]
-    },
-    "function": {
-	"prefix": "fn",
-	"body": ["fn ${1:name}($2)$3 {", "\t$0", "}"]
-    },
-    "async function": {
-	"prefix": "afn",
-	"body": ["async fn ${1:name}($2)$3 {", "\t$0", "}"]
-    },
-    "while": {
-        "prefix": "w",
-        "body": ["while ${1:true} {", "\t$0", "}"]
-    },
-    "while let": {
-        "prefix": "wl",
-        "body": ["while let ${1:value} = ${2:expr} {", "\t$0", "}"]
-    },
-    "while let some": {
-        "prefix": "wls",
-        "body": ["while let Some(${1:true}) = ${2:expr} {", "\t$0", "}"]
-    },
-    "while let ok": {
-        "prefix": "wlo",
-        "body": ["while let Ok(${1:true}) = ${2:expr} {", "\t$0", "}"]
-    },
-    "let": {
-	"prefix": "l",
-	"body": ["let ${0}"],
-	"description": "declare a let variable"
-    },
-    "let else": {
-	"prefix": "le",
-	"body": ["let ${1:value} = ${2:expr} else {", "\t$0", "};"],
-	"description": "declare a let variable"
     }
 }

@@ -19,6 +19,11 @@ return {
 
       rustsnip.setup()
 
+      vim.api.nvim_set_keymap("i", "<C-j>", "<Plug>luasnip-next-choice", {})
+      vim.api.nvim_set_keymap("s", "<C-j>", "<Plug>luasnip-next-choice", {})
+      vim.api.nvim_set_keymap("i", "<C-k>", "<Plug>luasnip-prev-choice", {})
+      vim.api.nvim_set_keymap("s", "<C-k>", "<Plug>luasnip-prev-choice", {})
+
       return {
         snippets = { preset = "luasnip" },
 

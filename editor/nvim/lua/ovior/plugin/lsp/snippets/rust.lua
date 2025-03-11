@@ -19,6 +19,13 @@ local function in_context(types)
     print("type: " .. type)
     local value = false
     for i, t in ipairs(types) do
+      if t == "_expr" then
+        if type:find("expression") then
+          print("expression: " .. type)
+          value = true
+          break
+        end
+      end
       if type == t then
         value = true
         break
@@ -43,6 +50,7 @@ function rust.setup()
   local ls = require("luasnip")
   local s, i, t = ls.s, ls.insert_node, ls.text_node
   local fmt = require("luasnip.extras.fmt").fmt
+  local c = ls.choice_node
 
   ls.add_snippets("rust", {
     s("d", fmt("#[derive({})]", { i(1, "Debug") }), {
@@ -137,23 +145,137 @@ function rust.setup()
         { i(1, "true"), i(0) }
       ),
       {
-        condition = in_context({ "block", "if_expression" }),
-        show_condition = in_context({ "block", "if_expression" }),
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
       }
     ),
     s(
-      "if",
+      "ifl",
       fmt(
         [[
-        if {} {{
+        if let {} = {} {{
+            {}
+        }}
+        ]],
+        { i(1, "value"), i(2, "expr"), i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "ifls",
+      fmt(
+        [[
+        if let Some({}) = {} {{
+            {}
+        }}
+        ]],
+        { i(1, "value"), i(2, "expr"), i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "l",
+      fmt(
+        [[
+        let {}
+        ]],
+        { i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "le",
+      fmt(
+        [[
+        let {} = {} else {{
+            {}
+        }};
+        ]],
+        { i(1, "value"), i(2, "expr"), i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr", "scoped_identifier" }),
+        show_condition = in_context({ "block", "_expr", "scoped_identifier" }),
+      }
+    ),
+    s(
+      "w",
+      fmt(
+        [[
+        while {} {{
             {}
         }}
         ]],
         { i(1, "true"), i(0) }
       ),
       {
-        condition = in_context({ "block", "if_expression" }),
-        show_condition = in_context({ "block", "if_expression" }),
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "for",
+      fmt(
+        [[
+        for {} in {} {{
+            {}
+        }}
+        ]],
+        { i(1, "elem"), i(2, "collection"), i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "fori",
+      fmt(
+        [[
+        for {} in 0..{} {{
+            {}
+        }}
+        ]],
+        { i(1, "elem"), i(2, "collection"), i(0) }
+      ),
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "todo",
+      { t("todo!()") },
+      {
+        condition = in_context({ "block", "_expr" }),
+        show_condition = in_context({ "block", "_expr" }),
+      }
+    ),
+    s(
+      "modtest",
+      fmt(
+        [[
+        #[cfg(test)]
+        mod tests {{
+            use super::*;
+
+            {}
+        }}
+        ]],
+        { i(0) }
+      ),
+      {
+        condition = in_file_context(),
+        show_condition = in_file_context(),
       }
     ),
   })
