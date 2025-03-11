@@ -7,81 +7,151 @@ function lua.setup()
   local fmt = require("luasnip.extras.fmt").fmt
 
   ls.add_snippets("lua", {
-    s("f", fmt([[
+    s(
+      "f",
+      fmt(
+        [[
     function {}({})
       {}
     end
-    ]], { i(1), i(2), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("lf", fmt([[
+    ]],
+        { i(1), i(2), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "lf",
+      fmt(
+        [[
     local function {}({})
       {}
     end
-    ]], { i(1), i(2), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("if", fmt([[
+    ]],
+        { i(1), i(2), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "if",
+      fmt(
+        [[
     if {} then
       {}
     end
-    ]], { i(1, "true"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("elseif", fmt([[
+    ]],
+        { i(1, "true"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "elseif",
+      fmt(
+        [[
     elseif {} then
       {}
-    ]], { i(1, "true"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("for", fmt([[
+    ]],
+        { i(1, "true"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "for",
+      fmt(
+        [[
     for {} = {}, {} do
       {}
     end
-    ]], { i(1, "i"), i(2, "1"), i(3, "10"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("forp", fmt([[
+    ]],
+        { i(1, "i"), i(2, "1"), i(3, "10"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "forp",
+      fmt(
+        [[
     for i, {} in pairs({}) do
       {}
     end
-    ]], { i(1, "x"), i(2, "table"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("fori", fmt([[
+    ]],
+        { i(1, "x"), i(2, "table"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "fori",
+      fmt(
+        [[
     for i, {} in ipairs({}) do
       {}
     end
-    ]], { i(1, "x"), i(2, "table"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("w", fmt([[
+    ]],
+        { i(1, "x"), i(2, "table"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "w",
+      fmt(
+        [[
     while {} do
       {}
     end
-    ]], { i(1, "true"), i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("l", fmt([[
+    ]],
+        { i(1, "true"), i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "l",
+      fmt(
+        [[
     local {}
-    ]], { i(0) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
-    s("req", fmt([[
+    ]],
+        { i(0) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
+    s(
+      "req",
+      fmt(
+        [[
     require({})
-    ]], { i(1) }), {
-      condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-      show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
-    }),
+    ]],
+        { i(1) }
+      ),
+      {
+        condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+        show_condition = util.in_context({ "chunk", "function_declaration", "assignment_statement" }),
+      }
+    ),
   })
 end
 

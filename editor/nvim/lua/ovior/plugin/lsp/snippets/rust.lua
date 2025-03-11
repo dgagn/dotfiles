@@ -219,14 +219,10 @@ function rust.setup()
         show_condition = in_context({ "block", "_expr" }),
       }
     ),
-    s(
-      "todo",
-      { t("todo!()") },
-      {
-        condition = in_context({ "block", "_expr" }),
-        show_condition = in_context({ "block", "_expr" }),
-      }
-    ),
+    s("todo", { t("todo!()") }, {
+      condition = in_context({ "block", "_expr" }),
+      show_condition = in_context({ "block", "_expr" }),
+    }),
     s(
       "modtest",
       fmt(
@@ -276,7 +272,7 @@ function rust.setup()
       ),
       {
         condition = in_file_context(),
-        show_condition = in_file_context()
+        show_condition = in_file_context(),
       }
     ),
     s(
@@ -324,7 +320,7 @@ function rust.setup()
         condition = in_file_context(),
         show_condition = in_file_context(),
       }
-    )
+    ),
   })
 end
 
