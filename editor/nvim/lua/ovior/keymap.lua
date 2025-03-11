@@ -9,6 +9,12 @@ function M.setup()
   vim.keymap.set("v", "u", "<nop>")
   vim.keymap.set("i", "<S-Tab>", "<c-d>")
 
+  vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
+
+  vim.keymap.set("n", "<leader><leader>l", "<cmd>source %<cr>")
+  vim.keymap.set("n", "<leader>l", ":.lua<cr>")
+  vim.keymap.set("v", "<leader>l", ":lua<cr>")
+
   vim.keymap.set("n", "<leader>x", "<cmd>bd<cr>")
   vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<cr>")
 
@@ -41,13 +47,13 @@ function M.setup()
   vim.keymap.set("n", "<down>", vim.diagnostic.goto_next)
   vim.keymap.set("n", "<up>", vim.diagnostic.goto_prev)
 
-  vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
-  vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
-  vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true, silent = true })
-  vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+  vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
-  vim.keymap.set("n", "<right>", "<cmd>cnext<cr>", { noremap = true, silent = true })
-  vim.keymap.set("n", "<left>", "<cmd>cprev<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<c-n>", "<cmd>cnext<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<c-p>", "<cmd>cprev<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-q>", "<cmd>cclose<cr>", { noremap = true, silent = true })
 end
 

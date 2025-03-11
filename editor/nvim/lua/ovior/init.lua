@@ -7,7 +7,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out,                            "WarningMsg" },
+      { out, "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -18,10 +18,10 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 function M.setup()
-  local lazy = require('lazy')
-  local aucmd = require('ovior.autocmd')
-  local set = require('ovior.set')
-  local keymap = require('ovior.keymap')
+  local lazy = require("lazy")
+  local aucmd = require("ovior.autocmd")
+  local set = require("ovior.set")
+  local keymap = require("ovior.keymap")
 
   vim.cmd.colorscheme("ovior")
 

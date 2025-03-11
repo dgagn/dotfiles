@@ -1,19 +1,19 @@
 return {
   {
-    'saghen/blink.cmp',
-    version = 'v0.13.1',
+    "saghen/blink.cmp",
+    version = "v0.13.1",
     dependencies = {
       "echasnovski/mini.icons",
     },
     opts = function()
-      local emmet = require('ovior.plugin.lsp.emmet')
+      local emmet = require("ovior.plugin.lsp.emmet")
       return {
         keymap = {
-          preset = 'default',
-          ['<tab>'] = {
+          preset = "default",
+          ["<tab>"] = {
             emmet.expand_cmp,
-            'snippet_forward',
-            'fallback',
+            "snippet_forward",
+            "fallback",
           },
         },
 
@@ -22,7 +22,7 @@ return {
             selection = {
               preselect = true,
               auto_insert = false,
-            }
+            },
           },
           menu = {
             draw = {
@@ -30,30 +30,30 @@ return {
                 kind_icon = {
                   ellipsis = false,
                   text = function(ctx)
-                    local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+                    local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
                     return kind_icon
                   end,
                   highlight = function(ctx)
-                    local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                     return hl
                   end,
-                }
-              }
-            }
-          }
+                },
+              },
+            },
+          },
         },
 
         appearance = {
           use_nvim_cmp_as_default = false,
-          nerd_font_variant = 'mono'
+          nerd_font_variant = "mono",
         },
 
         sources = {
-          default = { 'lsp', 'path', 'snippets', 'buffer' },
+          default = { "lsp", "path", "snippets", "buffer" },
         },
 
-        signature = { enabled = false }
+        signature = { enabled = false },
       }
     end,
-  }
+  },
 }

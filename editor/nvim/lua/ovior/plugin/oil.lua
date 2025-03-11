@@ -24,8 +24,8 @@ return {
       },
     },
     config = function(_, opts)
-      local oil = require('oil')
-      local autocmd = require('ovior.autocmd')
+      local oil = require("oil")
+      local autocmd = require("ovior.autocmd")
       vim.api.nvim_create_autocmd("FileType", {
         group = autocmd.augroup("confirm_oil"),
         pattern = "oil_preview",
@@ -36,7 +36,7 @@ return {
       oil.setup(opts)
     end,
     keys = {
-      { "-", "<cmd>Oil<cr>" }
-    }
+      { "-", "<cmd>Oil<cr>" },
+    },
   },
 }

@@ -8,7 +8,7 @@ M.augroup = augroup
 
 local function yank()
   -- I prefer to have yanked text highlighted.
-  vim.api.nvim_create_autocmd('TextYankPost', {
+  vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("yank"),
     callback = function()
       vim.highlight.on_yank()

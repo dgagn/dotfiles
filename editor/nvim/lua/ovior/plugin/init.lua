@@ -6,11 +6,11 @@ return {
     lazy = false,
     enabled = true,
     init = function()
-      vim.cmd [[ cnoreabbrev <expr> w!! getcmdline() ==# 'w!!' ? 'SudaWrite' : 'w!!' ]]
-    end
+      vim.cmd([[ cnoreabbrev <expr> w!! getcmdline() ==# 'w!!' ? 'SudaWrite' : 'w!!' ]])
+    end,
   },
   {
-    'nvim-lualine/lualine.nvim',
+    "nvim-lualine/lualine.nvim",
     dependencies = {
       { "echasnovski/mini.icons", opts = {} },
     },
@@ -65,7 +65,7 @@ return {
                 active = { fg = "#96cbfe", bg = "None", gui = "bold" },
                 inactive = { fg = "#bbbbbb", bg = "None" },
               },
-            }
+            },
           },
           lualine_c = {
             {
@@ -79,7 +79,7 @@ return {
           },
         },
       }
-    end
+    end,
   },
   {
     "AndrewRadev/splitjoin.vim",

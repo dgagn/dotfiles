@@ -1,3 +1,3 @@
-local ovior = require('ovior')
+local ovior = require("ovior")
 
 ovior.setup()

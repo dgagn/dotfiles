@@ -1,36 +1,41 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { 'saghen/blink.cmp' },
+    dependencies = {
+      "saghen/blink.cmp",
+    },
     config = function()
-      local lspconfig = require('lspconfig')
-      local on_attach = require('ovior.plugin.lsp.keymap').on_attach
+      local lspconfig = require("lspconfig")
+      local on_attach = require("ovior.plugin.lsp.keymap").on_attach
 
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
       local servers = {
         rust_analyzer = {
           enable = true,
           capabilities = capabilities,
           cmd = {
-            "rustup", "run", "nightly", "rust-analyzer"
+            "rustup",
+            "run",
+            "nightly",
+            "rust-analyzer",
           },
           settings = {
             ["rust-analyzer"] = {
               checkOnSave = {
-                command = "clippy"
+                command = "clippy",
               },
               cargo = {
                 allFeatures = true,
               },
               diagnostics = {
                 enable = true,
-              }
-            }
-          }
+              },
+            },
+          },
         },
         clangd = {
           enable = true,
-          settings = {}
+          settings = {},
         },
         lua_ls = {
           enable = true,
@@ -39,13 +44,12 @@ return {
               workspace = { checkThirdParty = false },
               telemetry = { enable = false },
             },
-          }
+          },
         },
         emmet_language_server = {
           enable = true,
           filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
-          settings = {
-          },
+          settings = {},
         },
       }
 
@@ -55,7 +59,7 @@ return {
             on_attach = details.on_attach or on_attach,
             settings = details.settings,
             capabilities = details.capabilities,
-            cmd = details.cmd
+            cmd = details.cmd,
           })
         end
       end
@@ -64,33 +68,35 @@ return {
       vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then return end
+          if not client then
+            return
+          end
 
-          if client.supports_method('textDocument/formatting') then
-            vim.api.nvim_create_autocmd('BufWritePre', {
+          if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_create_autocmd("BufWritePre", {
               buffer = args.buf,
               callback = function()
                 vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end
+              end,
             })
           end
-        end
+        end,
       })
-    end
+    end,
   },
   {
     "j-hui/fidget.nvim",
     opts = {},
   },
   {
-    'rust-lang/rust.vim',
+    "rust-lang/rust.vim",
     ft = { "rust" },
     config = function()
       vim.g.rustfmt_autosave = 1
       vim.g.rustfmt_emit_files = 1
       vim.g.rustfmt_fail_silently = 0
-      vim.g.rust_clip_command = 'wl-copy'
-    end
+      vim.g.rust_clip_command = "wl-copy"
+    end,
   },
   {
     "folke/lazydev.nvim",
@@ -106,15 +112,15 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {}
+    opts = {},
   },
   {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
-        "lua_ls"
-      }
-    }
+        "lua_ls",
+      },
+    },
   },
   {
     "dgagn/diagflow.nvim",
@@ -128,5 +134,5 @@ return {
         "DiagnosticChanged",
       },
     },
-  }
+  },
 }

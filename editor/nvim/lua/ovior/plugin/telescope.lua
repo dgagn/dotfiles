@@ -4,10 +4,12 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function(_, opts)
       require("telescope").setup(opts)
       pcall(require("telescope").load_extension, "fzf")
+      pcall(require("telescope").load_extension, "ui-select")
       pcall(require("telescope").load_extension, "live_grep_args")
     end,
     keys = function()
@@ -130,6 +132,11 @@ return {
             "node_modules",
             "vendor",
             ".git/",
+          },
+          extensions = {
+            ["ui-select"] = {
+              require("telescope.themes").get_dropdown({}),
+            },
           },
           mappings = {
             i = {
