@@ -46,6 +46,18 @@ return {
             },
           },
         },
+        ts_ls = {
+          enable = true,
+          settings = {}
+        },
+        intelephense = {
+          enable = true,
+          settings = {}
+        },
+        tailwindcss = {
+          enable = true,
+          settings = {}
+        },
         pyright = {
           enable = true,
           filtetypes = { "python" },

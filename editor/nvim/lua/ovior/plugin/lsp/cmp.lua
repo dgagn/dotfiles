@@ -4,19 +4,30 @@ return {
     version = "v0.13.1",
     dependencies = {
       "echasnovski/mini.icons",
+      {
+        "L3MON4D3/LuaSnip",
+        version = 'v2.*',
+        config = function()
+          require("luasnip.loaders.from_snipmate").load({ path = { "./snippets" } })
+        end
+      },
     },
     opts = function()
       local emmet = require("ovior.plugin.lsp.emmet")
+      local snip = require("ovior.plugin.lsp.snip")
+
       return {
+        snippets = { preset = 'luasnip' },
+
         keymap = {
           preset = "default",
           ["<tab>"] = {
             emmet.expand_cmp,
+            snip.expand_cmp,
             "snippet_forward",
             "fallback",
           },
         },
-
         completion = {
           list = {
             selection = {
@@ -30,11 +41,21 @@ return {
                 kind_icon = {
                   ellipsis = false,
                   text = function(ctx)
-                    local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+                    local icons = require("mini.icons")
+                    local kind = ctx.kind
+                    if kind == "Snippet" then
+                      kind = "Object"
+                    end
+                    local kind_icon, _, _ = icons.get("lsp", kind)
                     return kind_icon
                   end,
                   highlight = function(ctx)
-                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                    local icons = require("mini.icons")
+                    local kind = ctx.kind
+                    if kind == "Snippet" then
+                      kind = "Object"
+                    end
+                    local _, hl, _ = icons.get("lsp", kind)
                     return hl
                   end,
                 },
@@ -50,6 +71,9 @@ return {
 
         sources = {
           default = { "lsp", "path", "snippets", "buffer" },
+
+          providers = {
+          },
         },
 
         signature = { enabled = false },

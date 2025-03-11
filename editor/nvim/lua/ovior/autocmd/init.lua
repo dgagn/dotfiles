@@ -38,7 +38,6 @@ local function highlight_whitespace()
     pattern = "*",
     callback = function()
       if vim.fn.exists("b:current_syntax") == 1 then
-        print(vim.bo.filetype)
         vim.api.nvim_call_function("matchadd", { "ExtraWhitespace", "\\s\\+$" })
       end
     end,
