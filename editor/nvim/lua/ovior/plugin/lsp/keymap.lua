@@ -1,17 +1,14 @@
 local M = {}
 
 function M.on_attach(client, bufnr)
-  local lspmap = function(mode, keys, func, desc)
-    vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = desc })
+  local lspmap = function(mode, keys, func)
+    vim.keymap.set(mode, keys, func, { buffer = bufnr })
   end
 
   -- restart lsp
   vim.keymap.set("n", "<leader>z", "<cmd>LspRestart<cr>")
 
-  vim.keymap.set("n", "<leader>fm", function()
-    vim.lsp.buf.format({ bufnr = bufnr, id = client.id })
-  end)
-
+  lspmap("n", "<leader>fm", vim.lsp.buf.format)
   lspmap("n", "gd", vim.lsp.buf.definition)
   lspmap("n", "gD", vim.lsp.buf.declaration)
   lspmap("n", "gi", vim.lsp.buf.implementation)

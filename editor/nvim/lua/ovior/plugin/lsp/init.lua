@@ -46,6 +46,17 @@ return {
             },
           },
         },
+        pyright = {
+          enable = true,
+          filtetypes = { "python" },
+          settings = {
+            python = {
+              analysis = {
+                typeCheckingMode = "off",
+              },
+            },
+          }
+        },
         emmet_language_server = {
           enable = true,
           filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
@@ -135,4 +146,18 @@ return {
       },
     },
   },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      'nvimtools/none-ls-extras.nvim',
+    },
+    opts = function()
+      local nls = require("null-ls")
+      return {
+        sources = {
+          require("none-ls.formatting.ruff_format"),
+        }
+      }
+    end
+  }
 }

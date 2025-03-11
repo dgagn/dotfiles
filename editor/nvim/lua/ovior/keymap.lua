@@ -9,13 +9,11 @@ function M.setup()
   vim.keymap.set("v", "u", "<nop>")
   vim.keymap.set("i", "<S-Tab>", "<c-d>")
 
-  vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
-
   vim.keymap.set("n", "<leader><leader>l", "<cmd>source %<cr>")
   vim.keymap.set("n", "<leader>l", ":.lua<cr>")
   vim.keymap.set("v", "<leader>l", ":lua<cr>")
 
-  vim.keymap.set("n", "<leader>x", "<cmd>bd<cr>")
+  vim.keymap.set("n", "<leader>x", "<cmd>bd!<cr>")
   vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<cr>")
 
   vim.keymap.set("n", "<C-d>", "<C-d>zz")
