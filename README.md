@@ -30,7 +30,6 @@ Make sure your xdg paths are set before or set them manually where you want.
 | tmux | `sudo pacman -S tmux` |
 | fish | `sudo pacman -S fish` |
 | neovim | `sudo pacman -S neovim` |
-| --- | --- |
 | i3 | `sudo pacman -S i3-wm` |
 | i3blocks | `sudo pacman -S i3blocks` |
 | i3lock | `sudo pacman -S i3lock` |
