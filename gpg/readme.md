@@ -6,7 +6,3 @@
 - **Key**: [key.asc](./key.asc)
 - **Keyservers**:
     - [keys.openpgp.org](https://keys.openpgp.org)
-
-    ```sh
-    gpg --keyserver hkps://keys.openpgp.org --search-keys dany@ovior.ca
-    ```
