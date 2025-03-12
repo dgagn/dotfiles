@@ -88,8 +88,4 @@ return {
       vim.g.splitjoin_php_method_chain_full = 1
     end,
   },
-  {
-    "echasnovski/mini.surround",
-    opts = {},
-  },
 }

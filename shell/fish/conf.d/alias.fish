@@ -11,3 +11,4 @@ alias clip 'fish_clipboard_copy'
 alias icat 'kitten icat'
 alias gs "git status"
 alias gaa "git add --all"
+alias ga "git add"

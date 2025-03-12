@@ -18,7 +18,7 @@ function snippets.in_context(types)
     local type = node:type()
     print("type: " .. type)
     local value = false
-    for i, t in ipairs(types) do
+    for _, t in ipairs(types) do
       if t == "_expr" then
         if type:find("expression") then
           print("expression: " .. type)
