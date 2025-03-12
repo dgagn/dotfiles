@@ -33,6 +33,8 @@ Each tool has its own **README.md** inside its respective directory.
 
 ### Gui
 
+The graphical components of my i3wm setup with [Xorg](https://wiki.archlinux.org/title/Xorg).
+
 | Tool | Installation |
 | --- | --- |
 | i3wm (window manager) | `sudo pacman -S i3-wm` |

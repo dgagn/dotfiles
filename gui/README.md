@@ -1,4 +1,4 @@
-# gui config
+# Gui config
 
 This directory contains configuration files for the graphical components of my i3 setup.
 I use X11 because Wayland is not as stable.
