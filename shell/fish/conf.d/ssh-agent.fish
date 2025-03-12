@@ -1,5 +1,3 @@
-mkdir -p "$HOME/.ssh"
-
 set -Ux SSH_AUTH_SOCK "$HOME/.ssh/ssh-agent.sock"
 
 if test -S "$SSH_AUTH_SOCK"
@@ -25,3 +23,18 @@ end
 if test (ssh-add -l ^ /dev/null | string match -r "no identities")
     ssh-add ~/.ssh/id_rsa 2>/dev/null
 end
+
+# === ADD GPG AGENT SUPPORT ===
+
+# Ensure GPG uses the correct TTY
+export GPG_TTY=(tty)
+set -Ux GPG_TTY (tty)
+
+# Start GPG Agent if not running
+if not pgrep -x gpg-agent > /dev/null
+    gpgconf --launch gpg-agent
+    echo "Started new GPG agent."
+end
+
+# Enable passphrase caching for GPG
+set -Ux GPG_AGENT_SOCK (gpgconf --list-dirs agent-socket)
