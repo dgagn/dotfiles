@@ -4,7 +4,7 @@
 
 ## Installation
 
-First, **clone this repo** into your home directory:
+First, **clone this repo** into your home directory
 
 ```sh
 git clone --depth=1 https://github.com/ovior/dotfiles.git "$HOME/dotfiles"
@@ -19,30 +19,51 @@ stow -vt "$XDG_CONFIG_HOME" gui
 stow -vt "$XDG_DATA_HOME" share
 ```
 
-Make sure your xdg paths are set before or set them manually where you want.
+Ensure your [XDG base directory](https://wiki.archlinux.org/title/XDG_Base_Directory) are 
+correctly set before running these commands, or manually specify where you want 
+the configurations to be applied.
 
 ## Tools
 
-All tools are explained in their own `README.md` file in the folder.
+Each tool has its own **README.md** inside its respective directory.
 
-- [gui](./gui/README.md)
+- [Gui Configurations](./gui/README.md)
 
-*tldr* these are mostly the tools used.
+*tldr these are the tools explained*
+
+### Gui
+
+| Tool | Installation |
+| --- | --- |
+| i3wm (window manager) | `sudo pacman -S i3-wm` |
+| i3blocks (status bar) | `sudo pacman -S i3blocks` |
+| i3lock (session lock) | `sudo pacman -S i3lock` |
+| scrot (screenshot tool) | `sudo pacman -S scrot` |
+| feh (wallpaper and image viewer) | `sudo pacman -S scrot` |
+| picom (compositor) | `sudo pacman -S picom` |
+| dmenu (application launcher) | `sudo pacman -S dmenu` |
+| dunst (notifications) | `sudo pacman -S dunst` |
+| kitty (terminal) | `sudo pacman -S kitty` |
+| firefox (browser) | `sudo pacman -S dmenu` |
+| fontconfig (font management) | `sudo pacman -S fontconfig` |
+| discord (communication) | `sudo pacman -S discord` |
+| jetbrains mono font (font) | `sudo pacman -S ttf-jetbrains-mono-nerd` |
+
+### Shell
 
 | Tool | Installation |
 | --- | --- |
 | GNU stow | `sudo pacman -S stow` |
 | git | `sudo pacman -S git` |
-| tmux | `sudo pacman -S tmux` |
 | fish | `sudo pacman -S fish` |
+
+### Editor
+
+The only *real* editor.
+
+| Tool | Installation |
+| --- | --- |
 | neovim | `sudo pacman -S neovim` |
-| i3 | `sudo pacman -S i3-wm` |
-| i3blocks | `sudo pacman -S i3blocks` |
-| i3lock | `sudo pacman -S i3lock` |
-| kitty | `sudo pacman -S kitty` |
-| fontconfig | `sudo pacman -S fontconfig` |
-| dunst | `sudo pacman -S dunst` |
-| picom | `sudo pacman -S picom` |
 
 
 ## PGP information

@@ -60,6 +60,13 @@ it's more minimalist and feels faster.
 - Installation `sudo pacman -S dmenu` (already installed by i3)
 - [Dmenu](https://wiki.archlinux.org/title/Dmenu)
 
+## dunst
+
+A lightweight notification daemons that handles the notifications for stuff like
+discord sound brightness and so on..
+
+- [Dunst](https://wiki.archlinux.org/title/Dunst)
+
 ## kitty
 
 A solid terminal. I used Alacritty for a long time, but Kitty supports image rendering,
