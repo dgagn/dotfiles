@@ -1,7 +1,8 @@
 # Gui config
 
 This directory contains configuration files for the graphical components of my i3 setup.
-I use X11 because Wayland is not as stable.
+I use [Xorg](https://wiki.archlinux.org/title/Xorg) because [Wayland](https://wiki.archlinux.org/title/Wayland)
+is not as stable.
 
 ## i3wm
 
