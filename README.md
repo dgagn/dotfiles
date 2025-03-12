@@ -37,7 +37,8 @@ Make sure your xdg paths are set before or set them manually where you want.
 | fontconfig | `sudo pacman -S fontconfig` |
 | dunst | `sudo pacman -S dunst` |
 | picom | `sudo pacman -S picom` |
-| rofi | `sudo pacman -S rofi` |
+
+- [gui](./gui/README.md)
 
 ## PGP information
 
