@@ -1,4 +1,4 @@
-local M = {}
+local ovior = {}
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -17,7 +17,7 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-function M.setup()
+function ovior.setup()
   local lazy = require("lazy")
   local aucmd = require("ovior.autocmd")
   local set = require("ovior.set")
@@ -41,4 +41,4 @@ function M.setup()
   })
 end
 
-return M
+return ovior

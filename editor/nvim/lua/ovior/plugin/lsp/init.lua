@@ -41,6 +41,9 @@ return {
           enable = true,
           settings = {
             Lua = {
+              format = {
+                enable = false,
+              },
               workspace = { checkThirdParty = false },
               telemetry = { enable = false },
             },
@@ -168,6 +171,7 @@ return {
       return {
         sources = {
           require("none-ls.formatting.ruff_format"),
+          nls.builtins.formatting.stylua,
         },
       }
     end,

@@ -7,9 +7,9 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     config = function(_, opts)
-      require("telescope").setup(opts)
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
+      require("telescope").setup(opts)
     end,
     keys = function()
       local builtin = require("telescope.builtin")
@@ -26,7 +26,7 @@ return {
         {
           "<leader>fh",
           builtin.help_tags,
-        }
+        },
       }
     end,
     opts = function()
