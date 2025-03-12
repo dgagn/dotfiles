@@ -58,6 +58,7 @@ The graphical components of my i3wm setup with [Xorg](https://wiki.archlinux.org
 | GNU stow | `sudo pacman -S stow` |
 | git | `sudo pacman -S git` |
 | fish | `sudo pacman -S fish` |
+| tmux | `sudo pacman -S tmux` |
 
 ### Editor
 
