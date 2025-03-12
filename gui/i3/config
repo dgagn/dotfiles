@@ -175,7 +175,7 @@ set $base0F #85144b
 
 # Basic bar configuration using the Base16 variables.
 bar {
-    status_command SCRIPT_DIR="$HOME/.config/i3blocks/scripts" i3blocks
+    status_command SCRIPT_DIR="$XDG_CONFIG_HOME/i3blocks/scripts" i3blocks
 
     colors {
         background $base00
