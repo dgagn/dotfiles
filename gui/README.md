@@ -78,27 +78,12 @@ I have disabled most of them.
 - Installation `sudo pacman -S kitty`
 - [Kitty](https://wiki.archlinux.org/title/Kitty)
 
-## firefox
-
-One of the browsers I use. I don’t have a strong preference between Firefox and
-Google Chrome.
-
-- Installation `sudo pacman -S firefox`
-- [Firefox](https://wiki.archlinux.org/title/Firefox)
-
 ## fontconfig
 
 Manages system-wide fonts and rendering settings.
 
 - Installation `sudo pacman -S fontconfig`
 - [Font configuration](https://wiki.archlinux.org/title/Font_configuration)
-
-## discord
-
-A solid communication application.
-
-- Installation `sudo pacman -S discord`
-- [Discord](https://wiki.archlinux.org/title/Discord)
 
 ## jetbrains mono nerd font
 

@@ -46,9 +46,7 @@ The graphical components of my i3wm setup with [Xorg](https://wiki.archlinux.org
 | dmenu (application launcher) | `sudo pacman -S dmenu` |
 | dunst (notifications) | `sudo pacman -S dunst` |
 | kitty (terminal) | `sudo pacman -S kitty` |
-| firefox (browser) | `sudo pacman -S dmenu` |
 | fontconfig (font management) | `sudo pacman -S fontconfig` |
-| discord (communication) | `sudo pacman -S discord` |
 | jetbrains mono font (font) | `sudo pacman -S ttf-jetbrains-mono-nerd` |
 
 ### Shell
