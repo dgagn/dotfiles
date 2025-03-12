@@ -21,14 +21,24 @@ stow -vt "$XDG_DATA_HOME" share
 
 Make sure your xdg paths are set before or set them manually where you want.
 
-## Dependencies
+## Tools
 
 | Tool | Installation |
 | --- | --- |
 | GNU stow | `sudo pacman -S stow` |
+| git | `sudo pacman -S git` |
+| tmux | `sudo pacman -S tmux` |
 | fish | `sudo pacman -S fish` |
 | neovim | `sudo pacman -S neovim` |
-| tmux | `sudo pacman -S tmux` |
+| --- | --- |
+| i3 | `sudo pacman -S i3-wm` |
+| i3blocks | `sudo pacman -S i3blocks` |
+| i3lock | `sudo pacman -S i3lock` |
+| kitty | `sudo pacman -S kitty` |
+| fontconfig | `sudo pacman -S fontconfig` |
+| dunst | `sudo pacman -S dunst` |
+| picom | `sudo pacman -S picom` |
+| rofi | `sudo pacman -S rofi` |
 
 ## PGP information
 
