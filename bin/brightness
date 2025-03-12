@@ -1,6 +1,7 @@
 #!/bin/bash
-
-# update the brightness having at least 10%
+#
+# Updates the brightness having at least 10% cause 0% is scaryyyyy...
+# (C) 2025 Dany Gagnon <dany@ovior.ca> - MIT License
 
 MIN_PERCENT=10
 
