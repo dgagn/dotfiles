@@ -5,7 +5,7 @@
 
 iface=$(nmcli -t -f DEVICE,STATE dev status | grep ":connected" | cut -d: -f1 | head -n 1)
 
-if [ -z "$iface" ]; then
+if [ -z "$iface" -o "$iface" == "lo" ]; then
     echo "Disconnected"
     echo "Disconnected"
     echo \#FF0000
