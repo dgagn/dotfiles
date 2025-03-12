@@ -32,6 +32,16 @@ set -x MYSQL_HISTFILE "$HOME/var/history/mysql"
 set -x REDISCLI_HISTFILE "$HOME/var/history/redis"
 set -x GDBHISTFILE "$HOME/var/history/gdb"
 
+set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
+set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
+
 # only true editor
 set -x EDITOR "nvim"
-set -x PATH "$HOME/.cargo/bin:$HOME/.local/bin:$HOME/.config/composer/vendor/bin:$PATH"
+set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.config/composer/vendor/bin:$PATH"
+
+set -x TEXMFHOME "$XDG_DATA_HOME/texmf"
+set -x TEXMFVAR "$XDG_CACHE_HOME/texlive/texmf-var"
+set -x TEXMFCONFIG "$XDG_CONFIG_HOME/texlive/texmf-config"
+
+
+source "$CARGO_HOME/env.fish"
