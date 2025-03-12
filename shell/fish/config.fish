@@ -43,5 +43,4 @@ set -x TEXMFHOME "$XDG_DATA_HOME/texmf"
 set -x TEXMFVAR "$XDG_CACHE_HOME/texlive/texmf-var"
 set -x TEXMFCONFIG "$XDG_CONFIG_HOME/texlive/texmf-config"
 
-
 source "$CARGO_HOME/env.fish"
