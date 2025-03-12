@@ -23,6 +23,12 @@ Make sure your xdg paths are set before or set them manually where you want.
 
 ## Tools
 
+All tools are explained in their own `README.md` file in the folder.
+
+- [gui](./gui/README.md)
+
+*tldr* these are mostly the tools used.
+
 | Tool | Installation |
 | --- | --- |
 | GNU stow | `sudo pacman -S stow` |
@@ -38,7 +44,6 @@ Make sure your xdg paths are set before or set them manually where you want.
 | dunst | `sudo pacman -S dunst` |
 | picom | `sudo pacman -S picom` |
 
-- [gui](./gui/README.md)
 
 ## PGP information
 

@@ -1,0 +1,31 @@
+[user]
+	email = dany@ovior.ca
+	name = Dany Gagnon
+	signingkey = 57A8FB175DFB6183A489A1BEC2C26F41BC1D5608
+[github]
+	user = dgagn
+[init]
+	defaultBranch = main
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[core]
+	editor = nvim
+	autocrlf = input
+	safecrlf = true
+[commit]
+	gpgsign = true
+[pull]
+	ff = only
+[push]
+	default = simple
+[merge]
+	tool = nvim -d
+[tag]
+	gpgsign = true
+[diff]
+	algorithm = histogram
+	indentHeuristic = true
+[help]
+	autocorrect = prompt
