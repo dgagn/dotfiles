@@ -80,7 +80,6 @@ One of the browser I use, but I don't really care between firefox and google-chr
 This manages system-wide fonts and my rendering settings.
 
 - Installation `sudo pacman -S fontconfig`
-- [Fonts](https://wiki.archlinux.org/title/Fonts)
 - [Font configuration](https://wiki.archlinux.org/title/Font_configuration)
 
 ## discord
@@ -89,3 +88,11 @@ Pretty good communication application.
 
 - Installation `sudo pacman -S discord`
 - [Discord](https://wiki.archlinux.org/title/Discord)
+
+## jetbrains mono nerd font
+
+This font is the best I have ever used. I don't use any jetbrains products, but
+this font feels so good ! I highly recommend to try it
+
+- Installation `sudo pacman -S ttf-jetbrains-mono-nerd`
+- [Fonts](https://wiki.archlinux.org/title/Fonts)
