@@ -30,10 +30,6 @@ Make sure your xdg paths are set before or set them manually where you want.
 | neovim | `sudo pacman -S neovim` |
 | tmux | `sudo pacman -S tmux` |
 
-- Add a way to add dependencies
-- Add templating options for some config files like global font, passwords and
-so on
-
 ## PGP information
 
 You can view pgp information [here](./pgp/README.md)
@@ -43,3 +39,9 @@ You can view pgp information [here](./pgp/README.md)
 ```sh
 gpg --keyserver hkps://keys.openpgp.org --recv-keys C2C26F41BC1D5608
 ```
+
+## todo
+
+- Add a way to add dependencies
+- Add templating options for some config files like global font, passwords and
+so on
