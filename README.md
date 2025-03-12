@@ -10,7 +10,7 @@ First, **clone this repo** into your home directory
 git clone --depth=1 https://github.com/ovior/dotfiles.git "$HOME/dotfiles"
 ```
 
-Then, install the configurations you want with **GNU stow**
+Then, install the configurations you want with [stow](https://www.gnu.org/software/stow/)
 
 ```sh
 stow -vt "$XDG_CONFIG_HOME" editor
@@ -55,7 +55,7 @@ The graphical components of my i3wm setup with [Xorg](https://wiki.archlinux.org
 
 | Tool | Installation |
 | --- | --- |
-| GNU stow | `sudo pacman -S stow` |
+| stow | `sudo pacman -S stow` |
 | git | `sudo pacman -S git` |
 | fish | `sudo pacman -S fish` |
 | tmux | `sudo pacman -S tmux` |
