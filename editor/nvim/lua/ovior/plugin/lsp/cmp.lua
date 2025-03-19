@@ -83,4 +83,26 @@ return {
       }
     end,
   },
+  {
+    "zbirenbaum/copilot.lua",
+    event = "InsertEnter",
+    opts = {
+      suggestion = {
+        enable = true,
+        auto_trigger = true,
+        keymap = {
+          accept = "<c-u>",
+          next = "<c-g>",
+          prev = "<c-f>",
+          dismiss = "<c-e>",
+        },
+      },
+      panel = {
+        enable = false,
+      },
+    },
+    config = function(_, opts)
+      require("copilot").setup(opts)
+    end,
+  },
 }

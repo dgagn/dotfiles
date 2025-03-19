@@ -105,6 +105,7 @@ set $ws10 "10"
 
 assign [class="Ghidra"] 6
 assign [class="zoom"] 6
+assign [class="IDA"] 5
 
 # ghidra workspace should be tabbed
 for_window [workspace=$ws6] layout tabbed
