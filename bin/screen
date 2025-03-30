@@ -4,13 +4,12 @@
 # (C) 2025 Dany Gagnon <dany@ovior.ca> - MIT License
 
 import subprocess
-
+import argparse
 
 def get_xrandr_output():
     """Run xrandr and return its output as a string."""
     result = subprocess.run(["xrandr"], capture_output=True, text=True)
     return result.stdout
-
 
 def parse_xrandr_output(output):
     """Parse xrandr output to check if HDMI-1 is connected and to find its resolution."""
@@ -21,7 +20,7 @@ def parse_xrandr_output(output):
     for i, line in enumerate(lines):
         if "HDMI-1 connected" in line:
             hdmi_connected = True
-            for res_line in lines[i + 1 :]:
+            for res_line in lines[i + 1:]:
                 if "*" in res_line or "+" in res_line:
                     hdmi_resolution = res_line.split()[0]
                     break
@@ -29,45 +28,51 @@ def parse_xrandr_output(output):
 
     return hdmi_connected, hdmi_resolution
 
-
-def set_hdmi_to_right_of_edp(hdmi_resolution):
-    """Set HDMI-1 to the right of eDP-1 with the provided resolution."""
+def set_hdmi_position(hdmi_resolution, use_same):
+    """
+    Set HDMI-1 either to mirror eDP-1 (--same-as) or to the right of eDP-1 (--right-of)
+    based on the use_same flag.
+    """
     if hdmi_resolution:
+        position_arg = "--same-as" if use_same else "--right-of"
         subprocess.run(
             [
                 "xrandr",
-                "--output",
-                "HDMI-1",
-                "--mode",
-                hdmi_resolution,
-                "--right-of",
-                "eDP-1",
+                "--output", "HDMI-1",
+                "--mode", hdmi_resolution,
+                position_arg, "eDP-1",
             ]
         )
-        print(f"HDMI-1 set to {hdmi_resolution} right of eDP-1.")
+        pos_desc = "mirroring eDP-1" if use_same else "to the right of eDP-1"
+        print(f"HDMI-1 set to {hdmi_resolution} {pos_desc}.")
     else:
         print("HDMI-1 resolution not supported.")
-
 
 def disable_hdmi_auto():
     """Run xrandr --auto to reset to the default layout when HDMI-1 is disconnected."""
     subprocess.run(["xrandr", "--auto"])
     print("HDMI-1 is disconnected. Running xrandr --auto to reset display layout.")
 
-
 def main():
     """Main function to handle the display configuration based on HDMI-1 status."""
+    parser = argparse.ArgumentParser(description="Manage screen configurations with xrandr")
+    parser.add_argument(
+        "--same",
+        action="store_true",
+        help="Set HDMI-1 to mirror eDP-1 (use --same-as). Default is to set to the right-of."
+    )
+    args = parser.parse_args()
+
     xrandr_output = get_xrandr_output()
     hdmi_connected, hdmi_resolution = parse_xrandr_output(xrandr_output)
 
     if hdmi_connected:
-        if hdmi_resolution in ["2560x1080", "1920x1080"]:
-            set_hdmi_to_right_of_edp(hdmi_resolution)
+        if hdmi_resolution in ["2560x1080", "1920x1080", "1280x800"]:
+            set_hdmi_position(hdmi_resolution, args.same)
         else:
             print(f"Resolution {hdmi_resolution} not supported.")
     else:
         disable_hdmi_auto()
-
 
 if __name__ == "__main__":
     main()
