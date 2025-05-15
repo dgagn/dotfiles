@@ -15,7 +15,10 @@ fi
 ssid=$(nmcli -t -f active,ssid dev wifi | awk -F: '$1 == "yes" {print $2}')
 ip=$(ip -4 addr show "$iface" | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
 
-vpn=$(nmcli -t -f NAME,TYPE con show --active | awk -F: '$2=="vpn" {print $1}' | head -n 1)
+vpn=$(nmcli -t -f NAME,TYPE con show --active \
+  | grep -E ':(vpn|wireguard)$' \
+  | cut -d: -f1 \
+  | head -n1)
 
 if [ -z "$ssid" ]; then
     output="Wired $ip"

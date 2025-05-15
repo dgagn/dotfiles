@@ -53,6 +53,8 @@ function M.setup()
   vim.keymap.set("n", "<c-n>", "<cmd>cnext<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-p>", "<cmd>cprev<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-q>", "<cmd>cclose<cr>", { noremap = true, silent = true })
+
+  vim.keymap.set('n', '!r', ':r! ')
 end
 
 return M

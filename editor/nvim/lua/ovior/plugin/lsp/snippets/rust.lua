@@ -28,7 +28,6 @@ function rust.setup()
       "e",
       fmt(
         [[
-        #[derive(Debug)]
         enum {} {{
             {}
         }}
@@ -89,7 +88,6 @@ function rust.setup()
       "s",
       fmt(
         [[
-        #[derive(Debug)]
         struct {} {{
             {}
         }}

@@ -45,4 +45,6 @@ set -x TEXMFCONFIG "$XDG_CONFIG_HOME/texlive/texmf-config"
 
 set -x TERMINAL "kitty"
 
+set -x MANPAGER 'nvim +Man!'
+
 source "$CARGO_HOME/env.fish"
