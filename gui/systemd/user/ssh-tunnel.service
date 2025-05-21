@@ -1,0 +1,16 @@
+[Unit]
+Description=Reverse SOCKS tunnel to droplet
+After=network-online.target
+
+[Service]
+Type=simple
+Environment=AUTOSSH_GATETIME=0
+ExecStart=autossh -M 0 \
+   -fN \
+   -R 127.0.0.1:8888 \
+   nsec-tunnel
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

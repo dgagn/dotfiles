@@ -50,6 +50,8 @@ function M.setup()
   vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
+  vim.keymap.set("n", "<c-up>", "<cmd>cprev<cr>", { noremap = true, silent = true })
+  vim.keymap.set("n", "<c-down>", "<cmd>cnext<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-n>", "<cmd>cnext<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-p>", "<cmd>cprev<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-q>", "<cmd>cclose<cr>", { noremap = true, silent = true })
