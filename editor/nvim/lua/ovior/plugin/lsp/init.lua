@@ -122,6 +122,8 @@ return {
       vim.g.rustfmt_emit_files = 1
       vim.g.rustfmt_fail_silently = 0
       vim.g.rust_clip_command = "wl-copy"
+      vim.g.rustfmt_command = "cargo fmt"
+      vim.g.rustfmt_options = "--"
     end,
   },
   {
