@@ -258,7 +258,7 @@ function rust.setup()
       }
     ),
     s(
-      "te",
+      "test",
       fmt(
         [[
         #[test]
@@ -274,7 +274,7 @@ function rust.setup()
       }
     ),
     s(
-      "ate",
+      "atest",
       fmt(
         [[
         #[tokio::test]
