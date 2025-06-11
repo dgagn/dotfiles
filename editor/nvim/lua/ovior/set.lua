@@ -45,9 +45,8 @@ function M.setup()
 
   -- set expandtab softtabtab=4 shiftwidth=4 tabstop=8
   vim.opt.expandtab = true
-  vim.opt.softtabtab = 4
   vim.opt.shiftwidth = 4
-  vim.opt.tabstop = 8
+  vim.opt.tabstop = 4
 
   vim.diagnostic.config({
     virtual_text = true,
