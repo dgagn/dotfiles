@@ -49,6 +49,8 @@ function M.setup()
   vim.opt.tabstop = 4
 
   vim.diagnostic.config({
+    signs = true,
+    underline = true,
     virtual_text = true,
     float = {
       source = true,

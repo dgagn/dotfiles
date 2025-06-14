@@ -6,6 +6,7 @@ return {
     },
     config = function()
       local lspconfig = require("lspconfig")
+      local util = require("lspconfig.util")
       local on_attach = require("ovior.plugin.lsp.keymap").on_attach
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -16,9 +17,10 @@ return {
           cmd = {
             "rustup",
             "run",
-            "nightly",
+            "stable",
             "rust-analyzer",
           },
+          root_dir = util.root_pattern("Cargo.toml", ".git"),
           settings = {
             ["rust-analyzer"] = {
               checkOnSave = {
@@ -26,6 +28,7 @@ return {
               },
               cargo = {
                 allFeatures = true,
+                workspace = true,
               },
               diagnostics = {
                 enable = true,
