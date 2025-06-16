@@ -90,6 +90,9 @@ return {
     enabled = true,
     event = "InsertEnter",
     opts = {
+      filetypes = {
+        markdown = true,
+      },
       suggestion = {
         enable = true,
         auto_trigger = true,

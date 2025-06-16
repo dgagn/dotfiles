@@ -57,11 +57,25 @@ local function mkdirp()
   })
 end
 
+local function comment()
+  vim.api.nvim_create_autocmd({ "Filetype" }, {
+    pattern = { "*" },
+    callback = function()
+      vim.opt.formatoptions = vim.opt.formatoptions + {
+        o = false,
+      }
+    end,
+    group = augroup("paste"),
+    desc = "Disable auto-commenting on new lines",
+  })
+end
+
 function M.setup()
   yank()
   save_old_loc()
   highlight_whitespace()
   mkdirp()
+  comment()
 end
 
 return M
