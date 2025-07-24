@@ -29,6 +29,8 @@ kitty
 # fonts
 fontconfig
 ttf-jetbrains-mono-nerd
+gnu-free-fonts
+
 xclip
 stow
 fish
@@ -45,6 +47,8 @@ earlyoom
 firefox
 fzf
 gdb
+
+
 
 less
 llvm
@@ -68,6 +72,7 @@ rust
 yay-bin
 
 # xorg
+xorg-fonts-misc
 xorg-server
 xorg-xinit
 xorg-xrandr
@@ -79,8 +84,28 @@ pipewire-jack
 pipewire-pulse
 pulsemixer
 wireplumber
+gst-plugin-pipewire
+
+intel-ucode
+libva-intel-driver
+
+inotify-tools
+
+man-db
+man-pages
 
 python
 python-pip
 
 ripgrep
+
+nodejs
+npm
+
+# latex support ?
+texlive-basic
+texlive-doc
+texlive-fontsrecommended
+texlive-latex
+texlive-latexextra
+texlive-plaingeneric
