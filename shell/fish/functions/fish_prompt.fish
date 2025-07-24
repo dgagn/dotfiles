@@ -2,7 +2,7 @@ function fish_prompt
     set_color brblack
 	echo -n "["(date "+%H:%M")"] "
     set_color normal
-    printf "%s@%s:" (whoami) (hostname)
+    printf "%s:" (whoami)
 
     echo -n (prompt_pwd)
 
