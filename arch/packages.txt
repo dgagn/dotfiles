@@ -1,0 +1,73 @@
+# battery
+acpi
+brightnessctl
+ascii
+
+# gpg
+gnupg
+pass
+pass-otp
+zbar
+
+
+# wm
+i3-wm
+i3blocks
+i3lock
+
+# bluetooth
+bluez
+
+scrot
+feh
+picom
+dmenu
+
+dunst
+kitty
+
+# fonts
+fontconfig
+ttf-jetbrains-mono-nerd
+xclip
+stow
+fish
+tmux
+discord
+clang
+
+# classic container
+docker
+docker-compose
+
+earlyoom
+
+firefox
+fzf
+gdb
+
+less
+llvm
+lsof
+ltrace
+strace
+net-tools
+tcpdump
+tree
+zip
+whois
+which
+wget
+inetutils
+neovim
+git
+
+networkmanager
+
+rust
+yay-bin
+
+# xorg
+xorg-server
+xorg-xinit
+xorg-xrandr
