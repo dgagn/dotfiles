@@ -71,3 +71,16 @@ yay-bin
 xorg-server
 xorg-xinit
 xorg-xrandr
+
+# audio
+pipewire
+pipewire-alsa
+pipewire-jack
+pipewire-pulse
+pulsemixer
+wireplumber
+
+python
+python-pip
+
+ripgrep
