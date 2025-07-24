@@ -49,8 +49,11 @@ bindsym $mod+Shift+c exec --no-startup-id google-chrome-stable --incognito
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# A more modern dmenu replacement is rofi:
+# A more modern dmenu replacement is rofi but dmenu is king
 bindsym $mod+d exec dmenu_run -nb '#09090b' -sf '#09090b' -sb '#fafafa' -nf '#fafafa'
+
+# passmenu is op for passwords
+bindsym $mod+Shift+d exec passmenu -nb '#09090b' -sf '#09090b' -sb '#fafafa' -nf '#fafafa'
 
 # change focus
 bindsym $mod+h focus left
