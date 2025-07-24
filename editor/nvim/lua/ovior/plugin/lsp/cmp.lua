@@ -87,7 +87,7 @@ return {
   },
   {
     "zbirenbaum/copilot.lua",
-    enabled = true,
+    enabled = false,
     event = "InsertEnter",
     opts = {
       filetypes = {

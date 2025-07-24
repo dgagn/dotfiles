@@ -23,15 +23,30 @@ return {
           root_dir = util.root_pattern("Cargo.toml", ".git"),
           settings = {
             ["rust-analyzer"] = {
-              checkOnSave = {
+              check = {
                 command = "clippy",
               },
+              procMacro = { enable = true },
               cargo = {
                 allFeatures = true,
                 workspace = true,
               },
               diagnostics = {
                 enable = true,
+              },
+            },
+          },
+        },
+        sourcekit = {
+          enable = true,
+          filetypes = { "swift", "objective-c", "objective-cpp" },
+          root_dir = util.root_pattern("Package.swift", "compile_commands.json", ".git"),
+          settings = {
+            capabilities = {
+              workspace = {
+                didChangeWatchedFiles = {
+                  dynamicRegistration = true,
+                },
               },
             },
           },
@@ -197,5 +212,5 @@ return {
         desc = "Buffer Diagnostics (Trouble)",
       },
     },
-  }
+  },
 }
