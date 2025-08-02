@@ -42,8 +42,12 @@ function M.setup()
   vim.keymap.set("n", "g$", "<cmd>blast<cr>")
   vim.keymap.set("n", "g^", "<cmd>bfirst<cr>")
 
-  vim.keymap.set("n", "<down>", vim.diagnostic.goto_next)
-  vim.keymap.set("n", "<up>", vim.diagnostic.goto_prev)
+  vim.keymap.set("n", "<down>", function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end)
+  vim.keymap.set("n", "<up>", function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end)
 
   vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
   vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
@@ -56,7 +60,7 @@ function M.setup()
   vim.keymap.set("n", "<c-p>", "<cmd>cprev<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-q>", "<cmd>cclose<cr>", { noremap = true, silent = true })
 
-  vim.keymap.set('n', '!r', ':r! ')
+  vim.keymap.set("n", "!r", ":r! ")
 end
 
 return M
