@@ -42,8 +42,8 @@ for_window [class=".*"] border pixel 2
 
 bindsym $mod+Shift+Return exec --no-startup-id kitty
 bindsym $mod+Return exec --no-startup-id env TMUX_ATTACH=attach kitty
-bindsym $mod+c exec google-chrome-stable
-bindsym $mod+Shift+c exec --no-startup-id google-chrome-stable --incognito
+bindsym $mod+c exec firefox
+bindsym $mod+Shift+c exec --no-startup-id firefox -private-window
 
 
 # kill focused window
