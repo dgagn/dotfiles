@@ -1,0 +1,111 @@
+(defcfg
+    process-unmapped-keys yes
+)
+
+(defvar
+    tap-time 150
+    hold-time 150
+)
+
+(defsrc
+    1 2 3 4 5
+    h k
+    esc w e r c g
+    a s f ; l j lsft rsft
+    caps
+)
+
+(defalias
+    a-mod (tap-hold $tap-time $hold-time a rctl)
+    s-mod (tap-hold $tap-time $hold-time s lalt)
+    f-mod (tap-hold $tap-time $hold-time f lsft)
+
+    ;-mod (tap-hold $tap-time $hold-time ; rctl)
+    l-mod (tap-hold $tap-time $hold-time l lalt)
+    j-mod (tap-hold $tap-time $hold-time j rsft)
+    lsft_ (tap-hold 100 100 (macro S--) lsft)
+    rsft_ (tap-hold $tap-time $hold-time (macro S-') rsft)
+
+    esc-acc (tap-hold $tap-time $hold-time esc (layer-toggle accent))
+    prog (tap-hold $tap-time $hold-time XX (layer-toggle prog))
+)
+
+(deflayer default
+    _ _ _ _ _
+    h k
+    @esc-acc
+    w
+    e
+    r
+    c
+    g
+    @a-mod
+    @s-mod
+    @f-mod
+    @;-mod
+    @l-mod
+    @j-mod
+    @lsft_
+    @rsft_
+    @prog
+)
+ 
+(deflayer prog
+    A-1 A-2 A-3 A-4 A-5
+    left up
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    right
+    down
+    _
+    _
+    _
+)
+
+(deflayer accent
+    _ _ _ _ _
+    _ _
+    esc
+    (macro RA-` e)
+    (macro RA-' e)
+    (macro S-RA-6 e)
+    (macro RA-, c)
+    (macro S-RA-')
+    (macro RA-` a)
+    _
+    _
+    _
+    _
+    _
+    (layer-toggle accent-caps)
+    (layer-toggle accent-caps)
+    _
+)
+
+(deflayer accent-caps
+    _ _ _ _ _
+    _ _
+    esc
+    (macro RA-` S-e)
+    (macro RA-' S-e)
+    (macro S-RA-6 S-e)
+    (macro RA-, S-c)
+    (macro S-RA-')
+    (macro RA-` S-a)
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+    _
+)

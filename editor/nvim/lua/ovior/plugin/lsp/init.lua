@@ -10,6 +10,11 @@ return {
       local on_attach = require("ovior.plugin.lsp.keymap").on_attach
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+      local pid = tostring(vim.fn.getpid())
+      local omnisharp_bin = vim.fn.expand("~/.local/share/nvim/mason/bin/OmniSharp")
+
+
       local servers = {
         rust_analyzer = {
           enable = true,
@@ -37,20 +42,26 @@ return {
             },
           },
         },
-        sourcekit = {
+        omnisharp = {
           enable = true,
-          filetypes = { "swift", "objective-c", "objective-cpp" },
-          root_dir = util.root_pattern("Package.swift", "compile_commands.json", ".git"),
+          cmd = { omnisharp_bin, "--languageserver", "--hostPID", pid },
           settings = {
-            capabilities = {
-              workspace = {
-                didChangeWatchedFiles = {
-                  dynamicRegistration = true,
-                },
-              },
-            },
-          },
+          }
         },
+        -- sourcekit = {
+        --   enable = true,
+        --   filetypes = { "swift", "objective-c", "objective-cpp" },
+        --   root_dir = util.root_pattern("Package.swift", "compile_commands.json", ".git"),
+        --   settings = {
+        --     capabilities = {
+        --       workspace = {
+        --         didChangeWatchedFiles = {
+        --           dynamicRegistration = true,
+        --         },
+        --       },
+        --     },
+        --   },
+        -- },
         clangd = {
           enable = true,
           settings = {},
