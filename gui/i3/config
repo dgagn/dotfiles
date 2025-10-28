@@ -5,7 +5,7 @@ gaps outer 6
 
 font pango:JetbrainsMono Nerd Font Mono 12
 
-exec_always --no-startup-id setxkbmap -layout prog
+exec_always --no-startup-id setxkbmap -layout prog -variant altgr-intl
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
