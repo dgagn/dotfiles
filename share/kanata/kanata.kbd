@@ -7,22 +7,14 @@
     hold-time 130
 )
 
-(defsrc
-    1 2 3 4 5
-    h k
-    esc w e r c g
-    a s f ; l j lsft rsft
-    caps
-)
-
 (defalias
     a-mod (tap-hold $tap-time $hold-time a rctl)
     s-mod (tap-hold $tap-time $hold-time s lalt)
     f-mod (tap-hold $tap-time $hold-time f lsft)
-
     ;-mod (tap-hold $tap-time $hold-time ; rctl)
     l-mod (tap-hold $tap-time $hold-time l lalt)
     j-mod (tap-hold $tap-time $hold-time j rsft)
+
     lsft_ (tap-hold 100 100 (macro S--) lsft)
     rsft_ (tap-hold $tap-time $hold-time (macro S-') rsft)
 
@@ -30,82 +22,68 @@
     prog (tap-hold $tap-time $hold-time XX (layer-toggle prog))
 )
 
+
+(defsrc
+    = 1 2 3 4 5
+    q w e r t
+    esc a s d f g
+    lsft z x c v b
+    caps
+
+    6 7 8 9 0 -
+    y u i o p \
+    h j k l ; '
+    n m , . / rsft
+)
+
 (deflayer default
-    _ _ _ _ _
-    h k
-    @esc-acc
-    w
-    e
-    r
-    c
-    g
-    @a-mod
-    @s-mod
-    @f-mod
-    @;-mod
-    @l-mod
-    @j-mod
-    _
-    @rsft_
+    = 1 2 3 4 5
+    q w e r t
+    @esc-acc @a-mod @s-mod d @f-mod g
+    lsft z x c v b
     @prog
+
+    6 7 8 9 0 -
+    y u i o p \
+    h @j-mod k @l-mod @;-mod '
+    n m , . / @rsft_
 )
 
 (deflayer prog
-    A-1 A-2 A-3 A-4 A-5
-    left up
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    right
-    down
-    _
-    _
-    _
+    = A-1 A-2 A-3 A-4 A-5
+    S-7 S-8 { } S-\
+    esc S-6 S-4 S-9 S-0 \
+    lsft S-5 S-3 [ ] S-`
+    @prog
+
+    A-6 A-7 A-8 A-9 A-0 `
+    y u i o p \
+    left down up right ; '
+    n m , . / "
 )
 
 (deflayer accent
-    _ _ _ _ _
-    _ _
-    esc
-    (macro RA-` e)
-    (macro RA-' e)
-    (macro S-RA-6 e)
-    (macro RA-, c)
-    (macro S-RA-')
-    (macro RA-` a)
-    _
-    _
-    _
-    _
-    _
-    (layer-toggle accent-caps)
-    (layer-toggle accent-caps)
-    _
+    = 1 2 3 4 5
+    (macro RA-`) (macro RA-` e) (macro RA-' e) (macro RA-6 e) (macro RA-6)
+    esc (macro RA-` a) s d f (macro RA-S-')
+    lsft z x (macro RA-, c) v b
+    @prog
+
+    6 7 8 9 0 -
+    y u i o p \
+    h j k l ; '
+    n m , . / rsft
 )
 
 (deflayer accent-caps
-    _ _ _ _ _
-    _ _
-    esc
-    (macro RA-` S-e)
-    (macro RA-' S-e)
-    (macro S-RA-6 S-e)
-    (macro RA-, S-c)
-    (macro S-RA-')
-    (macro RA-` S-a)
-    _
-    _
-    _
-    _
-    _
-    _
-    _
-    _
+    = 1 2 3 4 5
+    q w e r t
+    esc a s d f g
+    lsft z x c v b
+    caps
+
+    6 7 8 9 0 -
+    y u i o p \
+    h j k l ; '
+    n m , . / rsft
 )
