@@ -15,13 +15,13 @@
     l-mod (tap-hold $tap-time $hold-time l lalt)
     j-mod (tap-hold $tap-time $hold-time j rsft)
 
-    lsft_ (tap-hold 100 100 (macro S--) lsft)
     rsft_ (tap-hold $tap-time $hold-time (macro S-') rsft)
 
     esc-acc (tap-hold $tap-time $hold-time esc (layer-toggle accent))
     prog (tap-hold $tap-time $hold-time XX (layer-toggle prog))
-)
 
+    enter (tap-hold $tap-time $hold-time enter (layer-toggle prog))
+)
 
 (defsrc
     = 1 2 3 4 5
@@ -34,6 +34,7 @@
     y u i o p \
     h j k l ; '
     n m , . / rsft
+    enter
 )
 
 (deflayer default
@@ -47,11 +48,12 @@
     y u i o p \
     h @j-mod k @l-mod @;-mod '
     n m , . / @rsft_
+    @enter
 )
 
 (deflayer prog
     = A-1 A-2 A-3 A-4 A-5
-    S-7 S-8 { } S-\
+    S-7 S-8 S-[ S-] S-\
     esc S-6 S-4 S-9 S-0 \
     lsft S-5 S-3 [ ] S-`
     @prog
@@ -59,7 +61,8 @@
     A-6 A-7 A-8 A-9 A-0 `
     y u i o p \
     left down up right ; '
-    n m , . / "
+    n m , . / rsft
+    @enter
 )
 
 (deflayer accent
@@ -73,6 +76,7 @@
     y u i o p \
     h j k l ; '
     n m , . / rsft
+    @enter
 )
 
 (deflayer accent-caps
@@ -86,4 +90,5 @@
     y u i o p \
     h j k l ; '
     n m , . / rsft
+    @enter
 )
