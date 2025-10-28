@@ -1,37 +1,26 @@
-set -Ux SSH_AUTH_SOCK "$HOME/.ssh/ssh-agent.sock"
+set -l sock "$XDG_RUNTIME_DIR/ssh-agent.sock"
+if test -z "$XDG_RUNTIME_DIR"
+    mkdir -p ~/.ssh
+    set sock "$HOME/.ssh/agent.sock"
+end
 
-if test -S "$SSH_AUTH_SOCK"
-    if set -q SSH_AGENT_DEBUG
-        echo "SSH agent already running."
-    end
-else
+if not test -S "$sock"
     if set -q SSH_AGENT_PID
-        # ignore errors
-        kill $SSH_AGENT_PID 2> /dev/null
+        kill $SSH_AGENT_PID ^ /dev/null
     end
-
-    rm -f "$SSH_AUTH_SOCK"
-
-    eval (ssh-agent -c | sed 's/^echo/#echo/' | sed -E 's/^setenv ([^ ]+) (.+)$/set -Ux \1 \2/')
-
-    ln -sf (echo $SSH_AUTH_SOCK) "$HOME/.ssh/ssh-agent.sock"
-
-    set -Ux SSH_AUTH_SOCK "$HOME/.ssh/ssh-agent.sock"
-    echo "Started new SSH agent."
+    eval (ssh-agent -c -a "$sock" | sed -E 's/^setenv ([^ ]+) (.+)$/set -gx \1 \2/')
+else
+    set -gx SSH_AUTH_SOCK "$sock"
 end
 
-if test (ssh-add -l ^ /dev/null | string match -r "no identities")
-    ssh-add ~/.ssh/id_rsa 2>/dev/null
+if ssh-add -l ^ /dev/null | string match -rq "no identities"
+    if test -f ~/.ssh/id_rsa
+        ssh-add ~/.ssh/id_rsa ^ /dev/null
+    end
 end
 
-# === ADD GPG AGENT SUPPORT ===
-
-export GPG_TTY=(tty)
-set -Ux GPG_TTY (tty)
-
+set -gx GPG_TTY (tty)
 if not pgrep -x gpg-agent > /dev/null
     gpgconf --launch gpg-agent
-    echo "Started new GPG agent."
 end
-
-set -Ux GPG_AGENT_SOCK (gpgconf --list-dirs agent-socket)
+set -gx GPG_AGENT_SOCK (gpgconf --list-dirs agent-socket)
