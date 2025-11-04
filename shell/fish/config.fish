@@ -1,9 +1,10 @@
 # no greeting
 set fish_greeting
 # dont fuck my cursor with no line stuff
-set fish_cursor_default block
-set fish_cursor_insert block
-set fish_cursor_visual block
+set -g fish_cursor_default block
+set -g fish_cursor_insert block
+set -g fish_cursor_visual block
+fish_vi_key_bindings
 
 set fish_color_command 96cbfe
 
