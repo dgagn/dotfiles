@@ -4,7 +4,6 @@ set fish_greeting
 set -g fish_cursor_default block
 set -g fish_cursor_insert block
 set -g fish_cursor_visual block
-fish_vi_key_bindings
 
 set fish_color_command 96cbfe
 
@@ -47,5 +46,37 @@ set -x TEXMFCONFIG "$XDG_CONFIG_HOME/texlive/texmf-config"
 set -x TERMINAL "kitty"
 
 set -x MANPAGER 'nvim +Man!'
+
+set -U fish_color_autosuggestion brblack
+set -U fish_color_cancel --reverse
+set -U fish_color_command 96cbfe
+set -U fish_color_comment red
+set -U fish_color_cwd green
+set -U fish_color_cwd_root red
+set -U fish_color_end green
+set -U fish_color_error brred
+set -U fish_color_escape brcyan
+set -U fish_color_history_current --bold
+set -U fish_color_host normal
+set -U fish_color_keyword
+set -U fish_color_normal normal
+set -U fish_color_operator brcyan
+set -U fish_color_option
+set -U fish_color_param normal
+set -U fish_color_quote f6c177
+set -U fish_color_redirection cyan --bold
+set -U fish_color_search_match white --background=brblack
+set -U fish_color_selection white --bold --background=brblack
+set -U fish_color_status red
+set -U fish_color_user brgreen
+set -U fish_color_valid_path --underline
+
+set -U fish_key_bindings fish_vi_key_bindings
+
+set -U fish_pager_color_completion normal
+set -U fish_pager_color_description yellow --italics
+set -U fish_pager_color_prefix normal --bold --underline
+set -U fish_pager_color_progress brwhite --background=cyan
+set -U fish_pager_color_selected_background --reverse
 
 source "$CARGO_HOME/env.fish"
