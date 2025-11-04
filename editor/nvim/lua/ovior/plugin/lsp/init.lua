@@ -11,9 +11,11 @@ return {
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+      local mason_registry = require('mason-registry')
       local pid = tostring(vim.fn.getpid())
-      local omnisharp_bin = vim.fn.expand("~/.local/share/nvim/mason/bin/OmniSharp")
-
+      local omnisharp_bin = mason_registry.get_package('omnisharp'):get_install_path() .. "/OmniSharp"
+      print(omnisharp_bin)
+      local vue_ls = mason_registry.get_package('vue-language-server'):get_install_path() .. "/node_modules/@vue/language-server"
 
       local servers = {
         rust_analyzer = {
@@ -48,20 +50,6 @@ return {
           settings = {
           }
         },
-        -- sourcekit = {
-        --   enable = true,
-        --   filetypes = { "swift", "objective-c", "objective-cpp" },
-        --   root_dir = util.root_pattern("Package.swift", "compile_commands.json", ".git"),
-        --   settings = {
-        --     capabilities = {
-        --       workspace = {
-        --         didChangeWatchedFiles = {
-        --           dynamicRegistration = true,
-        --         },
-        --       },
-        --     },
-        --   },
-        -- },
         clangd = {
           enable = true,
           settings = {},
@@ -81,6 +69,16 @@ return {
         ts_ls = {
           enable = true,
           settings = {},
+          filetypes = { "typescript", "typescriptreact", "javascriptreact", "typescriptreact", "vue" },
+          init_options = {
+            plugins = {
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_ls,
+                languages = {"vue"},
+              }
+            }
+          }
         },
         intelephense = {
           enable = true,
@@ -105,6 +103,12 @@ return {
           enable = true,
           filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
           settings = {},
+          init_options = {
+            includeLanguages = {
+              vue = "html",
+              ["vue-html"] = "html",
+            },
+          },
         },
       }
 
@@ -115,6 +119,8 @@ return {
             settings = details.settings,
             capabilities = details.capabilities,
             cmd = details.cmd,
+            filetypes = details.filetypes,
+            init_options = details.init_options or {}
           })
         end
       end
