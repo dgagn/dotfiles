@@ -81,4 +81,4 @@ gpg --keyserver hkps://keys.openpgp.org --recv-keys C2C26F41BC1D5608
 
 - Add a way to add dependencies
 - Add templating options for some config files like global font, passwords and
-so on
+so on.
