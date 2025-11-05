@@ -8,14 +8,33 @@ return {
       local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
       local on_attach = require("ovior.plugin.lsp.keymap").on_attach
+      local function with_fmt_control(server_name)
+        return function(client, bufnr)
+          -- Disable formatting from servers that might try
+          if
+            server_name == "ts_ls"
+            or server_name == "lua_ls"
+            or server_name == "ruff"
+            or server_name == "ruff_lsp"
+            or server_name == "volar"
+          then
+            client.server_capabilities.documentFormattingProvider = false
+          end
+          if on_attach then
+            on_attach(client, bufnr)
+          end
+        end
+      end
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      local mason_registry = require('mason-registry')
+      local mason_registry = require("mason-registry")
       local pid = tostring(vim.fn.getpid())
-      local omnisharp_bin = mason_registry.get_package('omnisharp'):get_install_path() .. "/OmniSharp"
-      print(omnisharp_bin)
-      local vue_ls = mason_registry.get_package('vue-language-server'):get_install_path() .. "/node_modules/@vue/language-server"
+      local omnisharp_bin = mason_registry.get_package("omnisharp"):get_install_path() .. "/OmniSharp"
+      local vue_ls = mason_registry.get_package("vue-language-server"):get_install_path()
+        .. "/node_modules/@vue/language-server"
+
+      local ruff_server = lspconfig["ruff"] and "ruff" or (lspconfig["ruff_lsp"] and "ruff_lsp" or nil)
 
       local servers = {
         rust_analyzer = {
@@ -47,8 +66,7 @@ return {
         omnisharp = {
           enable = true,
           cmd = { omnisharp_bin, "--languageserver", "--hostPID", pid },
-          settings = {
-          }
+          settings = {},
         },
         clangd = {
           enable = true,
@@ -73,12 +91,12 @@ return {
           init_options = {
             plugins = {
               {
-                name = '@vue/typescript-plugin',
+                name = "@vue/typescript-plugin",
                 location = vue_ls,
-                languages = {"vue"},
-              }
-            }
-          }
+                languages = { "vue" },
+              },
+            },
+          },
         },
         intelephense = {
           enable = true,
@@ -94,11 +112,23 @@ return {
           settings = {
             python = {
               analysis = {
-                typeCheckingMode = "off",
+                typeCheckingMode = "basic",
+                autoImportCompletions = true,
+                diagnosticMode = "workspace",
+                useLibraryCodeForTypes = true,
               },
             },
           },
         },
+        [ruff_server or ""] = ruff_server and {
+          enable = true,
+          init_options = {
+            settings = {
+              organizeImports = true,
+            },
+          },
+          root_dir = util.root_pattern("pyproject.toml", ".git"),
+        } or nil,
         emmet_language_server = {
           enable = true,
           filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
@@ -115,34 +145,15 @@ return {
       for server, details in pairs(servers) do
         if details.enable then
           lspconfig[server].setup({
-            on_attach = details.on_attach or on_attach,
+            on_attach = details.on_attach or with_fmt_control(server),
             settings = details.settings,
             capabilities = details.capabilities,
             cmd = details.cmd,
             filetypes = details.filetypes,
-            init_options = details.init_options or {}
+            init_options = details.init_options or {},
           })
         end
       end
-
-      -- auto format
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if not client then
-            return
-          end
-
-          if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = args.buf,
-              callback = function()
-                -- vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
-              end,
-            })
-          end
-        end,
-      })
     end,
   },
   {
@@ -182,6 +193,14 @@ return {
     opts = {
       ensure_installed = {
         "lua_ls",
+        "ts_ls",
+        "clangd",
+        "tailwindcss",
+        "volar",
+        "emmet_language_server",
+        "ruff",
+        "intelephense",
+        "pyright",
       },
     },
   },
@@ -207,8 +226,12 @@ return {
       local nls = require("null-ls")
       return {
         sources = {
+          require("none-ls.code_actions.eslint_d"),
+          require("none-ls.diagnostics.ruff"),
+          require("none-ls.formatting.ruff"),
           require("none-ls.formatting.ruff_format"),
           nls.builtins.formatting.stylua,
+          nls.builtins.formatting.prettierd,
         },
       }
     end,
