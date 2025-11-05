@@ -227,7 +227,6 @@ return {
       return {
         sources = {
           require("none-ls.code_actions.eslint_d"),
-          require("none-ls.diagnostics.ruff"),
           require("none-ls.formatting.ruff"),
           require("none-ls.formatting.ruff_format"),
           nls.builtins.formatting.stylua,

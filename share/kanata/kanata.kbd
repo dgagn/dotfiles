@@ -20,7 +20,7 @@
     esc-acc (tap-hold $tap-time $hold-time esc (layer-toggle accent))
     prog (tap-hold $tap-time $hold-time XX (layer-toggle prog))
 
-    enter (tap-hold $tap-time $hold-time enter (layer-toggle prog))
+    enter (tap-hold 110 110 enter (layer-toggle prog))
 )
 
 (defsrc
