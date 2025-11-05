@@ -14,8 +14,7 @@ function python.setup()
         ]],
         { i(1) }
       ),
-      {
-      }
+      {}
     ),
     s(
       "x",
@@ -25,8 +24,7 @@ function python.setup()
         ]],
         {}
       ),
-      {
-      }
+      {}
     ),
     s(
       "li",
@@ -38,8 +36,7 @@ function python.setup()
           i(1),
         }
       ),
-      {
-      }
+      {}
     ),
   })
 end
