@@ -10,6 +10,8 @@ First, **clone this repo** into your home directory
 git clone --depth=1 https://github.com/ovior/dotfiles.git "$HOME/dotfiles"
 ```
 
+The `/var/screenshots` needs to be created before we can use screenshots
+
 Then, install the configurations you want with [stow](https://www.gnu.org/software/stow/)
 
 ```sh
