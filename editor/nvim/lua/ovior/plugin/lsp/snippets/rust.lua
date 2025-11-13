@@ -5,7 +5,7 @@ local in_context = snippets.in_context
 local rust = {}
 
 local function in_file_context(additional)
-  local contexts = { "source_file", "declaration_list" }
+  local contexts = { "source_file", "declaration_list", "function_item" }
   if additional then
     for _, v in ipairs(additional) do
       table.insert(contexts, v)

@@ -108,7 +108,7 @@ return {
         },
         pyright = {
           enable = true,
-          filtetypes = { "python" },
+          filetypes = { "python" },
           settings = {
             python = {
               analysis = {
