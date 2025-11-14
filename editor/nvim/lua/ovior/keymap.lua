@@ -34,6 +34,21 @@ function M.setup()
   vim.keymap.set("n", "<leader>y", '"+y')
   vim.keymap.set("v", "<leader>y", '"+y')
 
+  vim.keymap.set("n", "<leader>t", '<cmd>Telescope timew<cr>')
+  vim.keymap.set("n", "<leader>s", function()
+    vim.fn.jobstart({ "timew", "stop" }, { detach = true })
+  end, { desc = "Timewarrior stop" })
+  vim.keymap.set("n", "<leader>n", function()
+    vim.ui.input({ prompt = "Timew tags: " }, function(input)
+      if input then
+        vim.fn.jobstart({ "timew", "start", input }, { detach = true })
+      else
+        vim.notify("No tags given, not starting timew", vim.log.levels.INFO)
+      end
+    end)
+  end, { desc = "Timewarrior start" })
+
+
   vim.keymap.set("n", "<leader>%", "<cmd>vsp<cr>")
 
   -- Buffer navigation

@@ -21,8 +21,8 @@ return {
         keymaps = {
           init_selection = "+",
           node_incremental = "+",
-          scope_incremental = "s+",
-          node_decremental = "s-",
+          -- scope_incremental = "s+",
+          -- node_decremental = "s-",
         },
       },
       autotag = {
