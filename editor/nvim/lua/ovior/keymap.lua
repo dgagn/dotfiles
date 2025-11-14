@@ -14,6 +14,7 @@ function M.setup()
   vim.keymap.set("v", "<leader>l", ":lua<cr>")
 
   vim.keymap.set("n", "<leader>x", "<cmd>bd!<cr>")
+  vim.keymap.set("n", "<leader>q", "<cmd>quit<cr>")
   vim.keymap.set("n", "<leader>X", "<cmd>%bd|e#|bd#<cr>")
 
   vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -74,8 +75,6 @@ function M.setup()
   vim.keymap.set("n", "<c-n>", "<cmd>cnext<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-p>", "<cmd>cprev<cr>", { noremap = true, silent = true })
   vim.keymap.set("n", "<c-q>", "<cmd>cclose<cr>", { noremap = true, silent = true })
-
-  vim.keymap.set("n", "!r", ":r! ")
 end
 
 return M

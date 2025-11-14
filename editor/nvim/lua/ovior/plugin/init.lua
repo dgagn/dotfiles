@@ -167,7 +167,7 @@ return {
     "tpope/vim-surround",
     config = function()
       vim.keymap.set("x", "<Tab>", "S<", { remap = true, silent = true })
-      vim.keymap.set("n", "s", "<Plug>Ysurround", { remap = true, silent = true })
+      vim.keymap.set("n", "sa", "<Plug>Ysurround", { remap = true, silent = true })
       vim.keymap.set("x", "s", "<Plug>VSurround", { remap = true, silent = true })
     end,
   },
