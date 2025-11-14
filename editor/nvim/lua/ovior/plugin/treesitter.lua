@@ -11,6 +11,14 @@ return {
       require("nvim-treesitter.configs").setup(opts)
     end,
     opts = {
+      ensure_installed = {
+        "lua",
+        "vue",
+        "javascript",
+        "typescript",
+        "tsx",
+        "rust"
+      },
       auto_install = true,
       highlight = {
         enable = true,
@@ -21,12 +29,8 @@ return {
         keymaps = {
           init_selection = "+",
           node_incremental = "+",
-          -- scope_incremental = "s+",
-          -- node_decremental = "s-",
+          node_decremental = "s-",
         },
-      },
-      autotag = {
-        enable = true,
       },
     },
   },

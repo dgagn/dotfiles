@@ -171,4 +171,10 @@ return {
       vim.keymap.set("x", "s", "<Plug>VSurround", { remap = true, silent = true })
     end,
   },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
 }
