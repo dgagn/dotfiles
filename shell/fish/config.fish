@@ -37,7 +37,7 @@ set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 
 # only true editor
 set -x EDITOR "nvim"
-set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:$PATH"
+set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$PATH"
 
 set -x TEXMFHOME "$XDG_DATA_HOME/texmf"
 set -x TEXMFVAR "$XDG_CACHE_HOME/texlive/texmf-var"
@@ -78,5 +78,11 @@ set -U fish_pager_color_description yellow --italics
 set -U fish_pager_color_prefix normal --bold --underline
 set -U fish_pager_color_progress brwhite --background=cyan
 set -U fish_pager_color_selected_background --reverse
+
+if test -d "$HOME/Android/Sdk"
+    set -gx ANDROID_SDK_ROOT $HOME/Android/Sdk
+    set -gx ANDROID_HOME $ANDROID_SDK_ROOT
+    set -gx PATH $ANDROID_SDK_ROOT/platform-tools $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $PATH
+end
 
 source "$CARGO_HOME/env.fish"
