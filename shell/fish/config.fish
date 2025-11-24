@@ -82,7 +82,11 @@ set -U fish_pager_color_selected_background --reverse
 if test -d "$HOME/Android/Sdk"
     set -gx ANDROID_SDK_ROOT $HOME/Android/Sdk
     set -gx ANDROID_HOME $ANDROID_SDK_ROOT
-    set -gx PATH $ANDROID_SDK_ROOT/platform-tools $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $PATH
+    set -gx PATH $ANDROID_SDK_ROOT/platform-tools $ANDROID_SDK_ROOT/emulator $ANDROID_SDK_ROOT/cmdline-tools/latest/bin $PATH
+end
+
+if test -d "$HOME/.config/.android/avd"
+    set -gx ANDROID_AVD_HOME $HOME/.config/.android/avd
 end
 
 source "$CARGO_HOME/env.fish"

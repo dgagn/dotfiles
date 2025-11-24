@@ -17,7 +17,8 @@ return {
         "javascript",
         "typescript",
         "tsx",
-        "rust"
+        "rust",
+        "latex"
       },
       auto_install = true,
       highlight = {
