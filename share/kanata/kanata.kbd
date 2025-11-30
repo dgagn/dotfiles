@@ -66,7 +66,7 @@
 )
 
 (deflayer accent
-    = 1 2 3 4 5
+    = mute vold volu 4 5
     (macro RA-`) (macro RA-` e) (macro RA-' e) (macro RA-6 e) (macro RA-6)
     esc (macro RA-` a) s d f (macro RA-S-')
     lsft z x (macro RA-,) v b
