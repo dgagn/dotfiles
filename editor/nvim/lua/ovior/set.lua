@@ -56,6 +56,8 @@ function M.setup()
       source = true,
     },
   })
+
+  vim.opt.guicursor = ""
 end
 
 return M
