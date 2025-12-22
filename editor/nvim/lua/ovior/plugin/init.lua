@@ -193,4 +193,10 @@ return {
       require("nvim-ts-autotag").setup()
     end,
   },
+  {
+    'mbbill/undotree',
+    config = function ()
+      vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
+    end
+  },
 }
