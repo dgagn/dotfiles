@@ -20,7 +20,7 @@
     esc-acc (tap-hold $tap-time $hold-time esc (layer-toggle accent))
     prog (tap-hold $tap-time $hold-time XX (layer-toggle prog))
 
-    enter (tap-hold 110 110 enter (layer-toggle prog))
+    enter (tap-hold 110 110 enter (layer-toggle prog-enter))
 )
 
 (defsrc
@@ -59,6 +59,20 @@
     @prog
 
     A-6 A-7 A-8 A-9 A-0 `
+    y u i o p \
+    left down up right ; '
+    n m , . / rsft
+    @enter
+)
+
+(deflayer prog-enter
+    = 1 2 3 4 5
+    S-7 S-8 S-[ S-] S-\
+    esc S-6 S-4 S-9 S-0 \
+    lsft S-5 S-3 [ ] S-`
+    @prog
+
+    6 7 8 9 0 `
     y u i o p \
     left down up right ; '
     n m , . / rsft
