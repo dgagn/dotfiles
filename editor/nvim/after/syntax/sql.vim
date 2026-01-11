@@ -1,4 +1,4 @@
-syn keyword sqlStatement declare replace call delimiter describe references
+syn keyword sqlStatement declare replace call delimiter describe references cascade set
 syn match sqlStatement /primary key/
 syn match sqlStatement /foreign key/
 syn match sqlDelimiterToken /\c^\s*delimiter\>\s*\zs\S\+/
@@ -6,7 +6,7 @@ syn match sqlDelimiterToken /^\s*\$\$\s*$/
 syn match sqlDelimiterToken /\$\$\s*$/
 hi def link sqlDelimiterToken Delimiter
 
-syn match sqlParenAsDelimiter /[();]/
+syn match sqlParenAsDelimiter /[();,]/
 hi def link sqlParenAsDelimiter Delimiter
 
 syn keyword sqlStatement signal sqlstate
@@ -23,7 +23,7 @@ syn keyword sqlType
       \ char varchar binary varbinary
       \ tinytext text mediumtext longtext
       \ tinyblob blob mediumblob longblob
-      \ enum set
+      \ enum
 
 syn keyword sqlType
       \ json
