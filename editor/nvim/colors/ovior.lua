@@ -86,6 +86,12 @@ local function set_colors(palette)
     ["@lsp.type.typeAlias"] = { fg = palette.special },
     ["@lsp.type.lifetime"] = { fg = palette.special },
     ["@tag"] = { fg = palette.special },
+
+    -- sql
+    ["sqlKeyword"] = { fg = palette.token },
+    ["sqlStatement"] = { fg = palette.token },
+    ["Quote"] = { fg = palette.string },
+    -- ["sqlOperator"] = { fg = palette.type },
   }
 
   for group, opts in pairs(highlights) do

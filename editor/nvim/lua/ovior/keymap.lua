@@ -27,6 +27,8 @@ function M.setup()
   vim.keymap.set("v", "<", "<gv")
   vim.keymap.set("v", ">", ">gv")
 
+  vim.keymap.set("v", "<leader>r", ':DB<cr>')
+
   vim.keymap.set("x", "<leader>p", '"_dP')
   vim.keymap.set("n", "<leader>p", '"+p')
 

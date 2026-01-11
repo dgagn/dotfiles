@@ -29,12 +29,72 @@ return {
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       local mason_registry = require("mason-registry")
-      local pid = tostring(vim.fn.getpid())
-      local omnisharp_bin = mason_registry.get_package("omnisharp"):get_install_path() .. "/OmniSharp"
       local vue_ls = mason_registry.get_package("vue-language-server"):get_install_path()
         .. "/node_modules/@vue/language-server"
 
       local ruff_server = lspconfig["ruff"] and "ruff" or (lspconfig["ruff_lsp"] and "ruff_lsp" or nil)
+
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        callback = function(ev)
+          local clients = vim.lsp.get_clients({ bufnr = ev.buf, name = "roslyn" })
+          if not clients or #clients == 0 then
+            return
+          end
+          local client = clients[1]
+          local params = { textDocument = vim.lsp.util.make_text_document_params(ev.buf) }
+          client.request(client, "textDocument/diagnostic", params, nil, ev.buf)
+        end,
+      })
+
+      local handles = {}
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "RoslynRestoreProgress",
+        callback = function(ev)
+          local token = ev.data.params[1]
+          local handle = handles[token]
+          if handle then
+            handle:report({
+              title = ev.data.params[2].state,
+              message = ev.data.params[2].message,
+            })
+          else
+            handles[token] = require("fidget.progress").handle.create({
+              title = ev.data.params[2].state,
+              message = ev.data.params[2].message,
+              lsp_client = {
+                name = "roslyn",
+              },
+            })
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "RoslynRestoreResult",
+        callback = function(ev)
+          local handle = handles[ev.data.token]
+          handles[ev.data.token] = nil
+
+          if handle then
+            handle.message = ev.data.err and ev.data.err.message or "Restore completed"
+            handle:finish()
+          end
+        end,
+      })
+
+      vim.lsp.config("roslyn", {
+        on_attach = on_attach,
+        settings = {
+          ["csharp|inlay_hints"] = {
+            csharp_enable_inlay_hints_for_implicit_object_creation = true,
+            csharp_enable_inlay_hints_for_implicit_variable_types = true,
+          },
+          ["csharp|code_lens"] = {
+            dotnet_enable_references_code_lens = true,
+          },
+        },
+      })
 
       local servers = {
         rust_analyzer = {
@@ -78,11 +138,6 @@ return {
               },
             },
           },
-        },
-        omnisharp = {
-          enable = true,
-          cmd = { omnisharp_bin, "--languageserver", "--hostPID", pid },
-          settings = {},
         },
         clangd = {
           enable = true,
@@ -185,6 +240,10 @@ return {
     opts = {},
   },
   {
+    "seblyng/roslyn.nvim",
+    opts = {},
+  },
+  {
     "rust-lang/rust.vim",
     ft = { "rust" },
     config = function()
@@ -210,7 +269,12 @@ return {
   },
   {
     "williamboman/mason.nvim",
-    opts = {},
+    opts = {
+      registries = {
+        "github:mason-org/mason-registry",
+        "github:Crashdummyy/mason-registry",
+      },
+    },
   },
   {
     "williamboman/mason-lspconfig.nvim",
@@ -255,6 +319,9 @@ return {
           require("none-ls.formatting.ruff_format"),
           nls.builtins.formatting.stylua,
           nls.builtins.formatting.prettierd,
+          nls.builtins.formatting.sqlfluff.with({
+            extra_args = { "--dialect", "mysql" },
+          }),
         },
       }
     end,

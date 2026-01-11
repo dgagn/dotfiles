@@ -194,9 +194,10 @@ return {
     end,
   },
   {
-    'mbbill/undotree',
-    config = function ()
+    "mbbill/undotree",
+    config = function()
       vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")
-    end
+    end,
   },
+  "tpope/vim-dadbod",
 }

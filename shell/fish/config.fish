@@ -35,6 +35,8 @@ set -x GDBHISTFILE "$HOME/var/history/gdb"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 
+set -x DATABASE_URL "mariadb://localhost/test"
+
 # only true editor
 set -x EDITOR "nvim"
 set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$HOME/var/share:$PATH"

@@ -23,6 +23,7 @@ return {
       auto_install = true,
       highlight = {
         enable = true,
+        disable = { "sql" },
       },
       indent = { enable = true },
       incremental_selection = {

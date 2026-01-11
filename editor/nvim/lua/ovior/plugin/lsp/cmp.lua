@@ -18,9 +18,11 @@ return {
       local rustsnip = require("ovior.plugin.lsp.snippets.rust")
       local luasnip = require("ovior.plugin.lsp.snippets.lua")
       local pythonsnip = require("ovior.plugin.lsp.snippets.python")
+      local csharpsnip = require("ovior.plugin.lsp.snippets.cs")
       rustsnip.setup()
       luasnip.setup()
       pythonsnip.setup()
+      csharpsnip.setup()
 
       return {
         snippets = { preset = "luasnip" },
@@ -80,7 +82,6 @@ return {
         sources = {
           default = { "lsp", "path", "snippets", "buffer" },
         },
-
         signature = { enabled = false },
       }
     end,
