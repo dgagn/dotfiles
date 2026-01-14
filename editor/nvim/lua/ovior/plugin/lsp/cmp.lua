@@ -19,10 +19,12 @@ return {
       local luasnip = require("ovior.plugin.lsp.snippets.lua")
       local pythonsnip = require("ovior.plugin.lsp.snippets.python")
       local csharpsnip = require("ovior.plugin.lsp.snippets.cs")
+      local tex = require("ovior.plugin.lsp.snippets.tex")
       rustsnip.setup()
       luasnip.setup()
       pythonsnip.setup()
       csharpsnip.setup()
+      tex.setup()
 
       return {
         snippets = { preset = "luasnip" },

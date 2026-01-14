@@ -130,7 +130,7 @@ return {
               build = {
                 executable = "latexmk",
                 args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                onSave = true,
+                onSave = false,
               },
               forwardSearch = {
                 executable = "zathura",

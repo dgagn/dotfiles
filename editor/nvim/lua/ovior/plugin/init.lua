@@ -11,9 +11,19 @@ return {
   {
     "lervag/vimtex",
     config = function()
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "tex", "plaintex", "bib" },
+        callback = function()
+          vim.bo.autoindent = false
+          vim.bo.smartindent = false
+          vim.bo.cindent = false
+          vim.bo.indentexpr = ""
+        end,
+      })
       vim.g.vimtex_view_method = "zathura"
       vim.g.vimtex_view_forward_search_on_start = 0
       vim.g.vimtex_compiler_latexmk = {
+        out_dir = "build",
         options = { "-shell-escape" },
       }
     end,
@@ -200,4 +210,31 @@ return {
     end,
   },
   "tpope/vim-dadbod",
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "teaching",
+          path = "~/vaults/teaching",
+        },
+      },
+
+      -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
+      -- URL it will be ignored but you can customize this behavior here.
+      ---@param url string
+      follow_url_func = function(url)
+        -- Open the URL in the default web browser.
+        -- vim.fn.jobstart({"xdg-open", url})  -- linux
+        vim.ui.open(url) -- need Neovim 0.10.0+
+      end,
+    },
+  },
 }
