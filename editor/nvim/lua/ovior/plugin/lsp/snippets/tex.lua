@@ -133,6 +133,30 @@ function tex.setup()
         { i(1), i(2) }
       )
     ),
+
+    s(
+      "cols",
+      fmta(
+        [[
+  \begin{columns}[T,onlytextwidth]
+  <>
+  \end{columns}
+  ]],
+        { i(1) }
+      )
+    ),
+
+    s(
+      "col",
+      fmta(
+        [[
+  \begin{column}{<>\textwidth}
+  <>
+  \end{column}
+  ]],
+        { i(1, "0.5"), i(2) }
+      )
+    ),
   })
 end
 
