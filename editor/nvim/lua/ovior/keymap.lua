@@ -27,7 +27,7 @@ function M.setup()
   vim.keymap.set("v", "<", "<gv")
   vim.keymap.set("v", ">", ">gv")
 
-  vim.keymap.set("v", "<leader>r", ':DB<cr>')
+  vim.keymap.set("v", "<leader>r", ":DB<cr>")
 
   vim.keymap.set("x", "<leader>p", '"_dP')
   vim.keymap.set("n", "<leader>p", '"+p')
@@ -38,9 +38,57 @@ function M.setup()
   vim.keymap.set("v", "<leader>y", '"+y')
   vim.keymap.set("n", "<leader>w", ":Run<CR>", { silent = true })
 
-  vim.keymap.set('s', 'u', 'u', { noremap = true })
+  local function handle_run()
+    local ft = vim.bo.filetype
+    local win = vim.api.nvim_get_current_win()
 
-  vim.keymap.set("n", "<leader>t", '<cmd>Telescope timew<cr>')
+    local cmd
+    if ft == "rust" then
+      cmd = ":Run cargo run"
+    elseif ft == "cs" or ft == "csharp" then
+      cmd = ":Run dotnet run"
+    else
+      return
+    end
+
+    vim.cmd(cmd)
+
+    vim.schedule(function()
+      if vim.api.nvim_win_is_valid(win) then
+        vim.api.nvim_set_current_win(win)
+      end
+    end)
+  end
+
+  local function handle_test()
+    local ft = vim.bo.filetype
+    local win = vim.api.nvim_get_current_win()
+
+    local cmd
+    if ft == "rust" then
+      cmd = ":Run cargo test"
+    elseif ft == "cs" or ft == "csharp" then
+      cmd = ":Run dotnet test"
+    else
+      return
+    end
+
+    vim.cmd(cmd)
+
+    vim.schedule(function()
+      if vim.api.nvim_win_is_valid(win) then
+        vim.api.nvim_set_current_win(win)
+      end
+    end)
+  end
+
+  vim.keymap.set("n", "<leader>t", handle_test, { silent = true })
+
+  vim.keymap.set("n", "<leader>e", handle_run, { silent = true })
+
+  vim.keymap.set("s", "u", "u", { noremap = true })
+
+  -- vim.keymap.set("n", "<leader>t", "<cmd>Telescope timew<cr>")
   vim.keymap.set("n", "<leader>s", function()
     vim.fn.jobstart({ "timew", "stop" }, { detach = true })
   end, { desc = "Timewarrior stop" })
@@ -53,7 +101,6 @@ function M.setup()
       end
     end)
   end, { desc = "Timewarrior start" })
-
 
   vim.keymap.set("n", "<leader>%", "<cmd>vsp<cr>")
 

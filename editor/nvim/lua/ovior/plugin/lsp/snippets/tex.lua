@@ -157,6 +157,17 @@ function tex.setup()
         { i(1, "0.5"), i(2) }
       )
     ),
+    s(
+      "sf",
+      fmta(
+        [[
+  \section{<>}
+
+  \sectionframe
+  ]],
+        { i(1) }
+      )
+    ),
   })
 end
 

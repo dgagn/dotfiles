@@ -20,76 +20,52 @@ vim.opt.rtp:prepend(lazypath)
 local cmd_bufnr
 
 local function open_cmd_window()
+  -- If an old terminal buffer exists, wipe it so we can start fresh.
   if cmd_bufnr and vim.api.nvim_buf_is_valid(cmd_bufnr) then
-    for _, win in ipairs(vim.api.nvim_list_wins()) do
-      if vim.api.nvim_win_get_buf(win) == cmd_bufnr then
-        vim.api.nvim_set_current_win(win)
-        return cmd_bufnr
+    local bt = vim.bo[cmd_bufnr].buftype
+    if bt == "terminal" then
+      pcall(vim.api.nvim_buf_delete, cmd_bufnr, { force = true })
+      cmd_bufnr = nil
+    else
+      for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_buf(win) == cmd_bufnr then
+          vim.api.nvim_set_current_win(win)
+          return cmd_bufnr
+        end
       end
     end
   end
 
   vim.cmd("botright 10split")
-  cmd_bufnr = vim.api.nvim_create_buf(false, true)
-  vim.api.nvim_win_set_buf(0, cmd_bufnr)
-
-  vim.bo[cmd_bufnr].buftype = "nofile"
-  vim.bo[cmd_bufnr].bufhidden = "hide"
-  vim.bo[cmd_bufnr].swapfile = false
-  vim.bo[cmd_bufnr].filetype = "CommandOutput"
-
+  vim.cmd("enew") -- new empty buffer in the split
+  cmd_bufnr = vim.api.nvim_get_current_buf()
   return cmd_bufnr
 end
 
-local function append_to_buf(bufnr, lines)
-  if not lines or #lines == 0 then
-    return
-  end
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
-  local existing = vim.api.nvim_buf_line_count(bufnr)
-  vim.api.nvim_buf_set_lines(bufnr, existing, existing, false, lines)
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
-  vim.api.nvim_buf_set_option(bufnr, "modified", false)
+local function append_lines(bufnr, lines)
+  if not vim.api.nvim_buf_is_valid(bufnr) then return end
+  vim.bo[bufnr].modifiable = true
+  local last = vim.api.nvim_buf_line_count(bufnr)
+  vim.api.nvim_buf_set_lines(bufnr, last, last, false, lines)
+  vim.bo[bufnr].modifiable = false
 end
 
 local function run_shell_cmd(cmd)
   local bufnr = open_cmd_window()
 
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", true)
-  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { "> " .. cmd, "" })
-  vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
-
-  local jobid = vim.fn.jobstart(cmd, {
-    stdout_buffered = false,
-    stderr_buffered = false,
-    on_stdout = function(_, data, _)
-      if not data then
-        return
-      end
-      vim.schedule(function()
-        append_to_buf(bufnr, data)
-      end)
-    end,
-    on_stderr = function(_, data, _)
-      if not data then
-        return
-      end
-      vim.schedule(function()
-        append_to_buf(bufnr, data)
-      end)
-    end,
+  local job_id = vim.fn.termopen(cmd, {
     on_exit = function(_, code, _)
       vim.schedule(function()
-        append_to_buf(bufnr, { "", "[exit " .. code .. "]" })
+        append_lines(bufnr, { "", ("[exit %d]"):format(code) })
       end)
     end,
   })
 
-  if jobid <= 0 then
-    vim.schedule(function()
-      append_to_buf(bufnr, { "", "[failed to start: " .. tostring(jobid) .. "]" })
-    end)
-  end
+  vim.schedule(function()
+    append_lines(bufnr, { ("> " .. cmd), "" })
+  end)
+
+  vim.cmd("startinsert")
 end
 
 vim.api.nvim_create_user_command("Run", function(opts)

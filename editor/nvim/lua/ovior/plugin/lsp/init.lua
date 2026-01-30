@@ -158,7 +158,7 @@ return {
         ts_ls = {
           enable = true,
           settings = {},
-          filetypes = { "typescript", "typescriptreact", "javascriptreact", "typescriptreact", "vue" },
+          filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "typescriptreact", "vue" },
           init_options = {
             plugins = {
               {
