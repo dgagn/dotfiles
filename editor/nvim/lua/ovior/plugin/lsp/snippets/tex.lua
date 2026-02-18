@@ -24,7 +24,7 @@ function tex.setup()
     s("it", fmta([[\item <>]], { i(1) })),
 
     s(
-      "-i",
+      "i",
       fmta(
         [[
   \begin{itemize}

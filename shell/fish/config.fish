@@ -39,7 +39,7 @@ set -x DATABASE_URL "mariadb://localhost/test"
 
 # only true editor
 set -x EDITOR "nvim"
-set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$HOME/var/share:$PATH"
+set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$HOME/var/share:$HOME/ida-home-pc-9.2:$PATH"
 
 set -x TEXMFHOME "$XDG_DATA_HOME/texmf"
 set -x TEXMFVAR "$XDG_CACHE_HOME/texlive/texmf-var"
@@ -48,6 +48,8 @@ set -x TEXMFCONFIG "$XDG_CONFIG_HOME/texlive/texmf-config"
 set -x TERMINAL "kitty"
 
 set -x MANPAGER 'nvim +Man!'
+
+set -x TEXINPUTS "$HOME/texmf/latex/tex/tailwind/:$TEXINPUTS"
 
 set -U fish_color_autosuggestion brblack
 set -U fish_color_cancel --reverse

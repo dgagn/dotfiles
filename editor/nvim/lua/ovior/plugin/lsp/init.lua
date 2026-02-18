@@ -97,6 +97,15 @@ return {
       })
 
       local servers = {
+        ltex = {
+          enable = true,
+          filetypes = {"tex", "plaintex", "bib", "markdown"},
+          settings = {
+            ltex = {
+              language = "fr"
+            }
+          }
+        },
         rust_analyzer = {
           enable = true,
           capabilities = capabilities,
