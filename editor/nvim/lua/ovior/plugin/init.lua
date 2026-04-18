@@ -111,38 +111,42 @@ return {
         timew_cache = string.format("[%s %s]", tags_str, duration)
         return timew_cache
       end
+
+      vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+      vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+
       return {
         options = {
           theme = {
             normal = {
-              a = { fg = "#ffffff", bg = "None", gui = "bold" },
-              b = { fg = "#ffffff", bg = "None" },
-              c = { fg = "#ffffff", bg = "None" },
+              a = { fg = "#ffffff", bg = nil, gui = "bold" },
+              b = { fg = "#ffffff", bg = nil },
+              c = { fg = "#ffffff", bg = nil },
             },
             insert = {
-              a = { fg = "#ffffff", bg = "None", gui = "bold" },
-              b = { fg = "#ffffff", bg = "None" },
-              c = { fg = "#ffffff", bg = "None" },
+              a = { fg = "#ffffff", bg = nil, gui = "bold" },
+              b = { fg = "#ffffff", bg = nil },
+              c = { fg = "#ffffff", bg = nil },
             },
             visual = {
-              a = { fg = "#ffffff", bg = "None", gui = "bold" },
-              b = { fg = "#ffffff", bg = "None" },
-              c = { fg = "#ffffff", bg = "None" },
+              a = { fg = "#ffffff", bg = nil, gui = "bold" },
+              b = { fg = "#ffffff", bg = nil },
+              c = { fg = "#ffffff", bg = nil },
             },
             replace = {
-              a = { fg = "#ffffff", bg = "None", gui = "bold" },
-              b = { fg = "#ffffff", bg = "None" },
-              c = { fg = "#ffffff", bg = "None" },
+              a = { fg = "#ffffff", bg = nil, gui = "bold" },
+              b = { fg = "#ffffff", bg = nil },
+              c = { fg = "#ffffff", bg = nil },
             },
             command = {
-              a = { fg = "#ffffff", bg = "None", gui = "bold" },
-              b = { fg = "#ffffff", bg = "None" },
-              c = { fg = "#ffffff", bg = "None" },
+              a = { fg = "#ffffff", bg = nil, gui = "bold" },
+              b = { fg = "#ffffff", bg = nil },
+              c = { fg = "#ffffff", bg = nil },
             },
             inactive = {
-              a = { fg = "#bbbbbb", bg = "None" },
-              b = { fg = "#bbbbbb", bg = "None" },
-              c = { fg = "#bbbbbb", bg = "None" },
+              a = { fg = "#bbbbbb", bg = nil },
+              b = { fg = "#bbbbbb", bg = nil },
+              c = { fg = "#bbbbbb", bg = nil },
             },
           },
           component_separators = "-",
@@ -158,8 +162,8 @@ return {
                 alternate_file = "",
               },
               buffers_color = {
-                active = { fg = "#96cbfe", bg = "None", gui = "bold" },
-                inactive = { fg = "#bbbbbb", bg = "None" },
+                active = { fg = "#96cbfe", bg = nil, gui = "bold" },
+                inactive = { fg = "#bbbbbb", bg = nil },
               },
             },
           },

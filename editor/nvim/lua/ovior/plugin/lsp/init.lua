@@ -1,22 +1,23 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "saghen/blink.cmp",
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
       local on_attach = require("ovior.plugin.lsp.keymap").on_attach
+      local lsp_augroup = vim.api.nvim_create_augroup("ovior-lsp-start", { clear = true })
+
       local function with_fmt_control(server_name)
         return function(client, bufnr)
-          -- Disable formatting from servers that might try
           if
             server_name == "ts_ls"
             or server_name == "lua_ls"
             or server_name == "ruff"
             or server_name == "ruff_lsp"
-            or server_name == "volar"
+            or server_name == "vue_ls"
           then
             client.server_capabilities.documentFormattingProvider = false
           end
@@ -28,99 +29,17 @@ return {
 
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      local mason_registry = require("mason-registry")
-      local vue_ls = mason_registry.get_package("vue-language-server"):get_install_path()
-        .. "/node_modules/@vue/language-server"
-
-      local ruff_server = lspconfig["ruff"] and "ruff" or (lspconfig["ruff_lsp"] and "ruff_lsp" or nil)
-
-      vim.api.nvim_create_autocmd("BufWritePost", {
-        callback = function(ev)
-          local clients = vim.lsp.get_clients({ bufnr = ev.buf, name = "roslyn" })
-          if not clients or #clients == 0 then
-            return
-          end
-          local client = clients[1]
-          local params = { textDocument = vim.lsp.util.make_text_document_params(ev.buf) }
-          client.request(client, "textDocument/diagnostic", params, nil, ev.buf)
-        end,
-      })
-
-      local handles = {}
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "RoslynRestoreProgress",
-        callback = function(ev)
-          local token = ev.data.params[1]
-          local handle = handles[token]
-          if handle then
-            handle:report({
-              title = ev.data.params[2].state,
-              message = ev.data.params[2].message,
-            })
-          else
-            handles[token] = require("fidget.progress").handle.create({
-              title = ev.data.params[2].state,
-              message = ev.data.params[2].message,
-              lsp_client = {
-                name = "roslyn",
-              },
-            })
-          end
-        end,
-      })
-
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "RoslynRestoreResult",
-        callback = function(ev)
-          local handle = handles[ev.data.token]
-          handles[ev.data.token] = nil
-
-          if handle then
-            handle.message = ev.data.err and ev.data.err.message or "Restore completed"
-            handle:finish()
-          end
-        end,
-      })
-
-      vim.lsp.config("roslyn", {
-        on_attach = on_attach,
-        settings = {
-          ["csharp|inlay_hints"] = {
-            csharp_enable_inlay_hints_for_implicit_object_creation = true,
-            csharp_enable_inlay_hints_for_implicit_variable_types = true,
-          },
-          ["csharp|code_lens"] = {
-            dotnet_enable_references_code_lens = true,
-          },
-        },
-      })
+      local vue_ls = vim.fn.expand("$MASON/packages/vue-language-server") .. "/node_modules/@vue/language-server"
 
       local servers = {
-        ltex = {
-          enable = true,
-          filetypes = {"tex", "plaintex", "bib", "markdown"},
-          settings = {
-            ltex = {
-              language = "fr"
-            }
-          }
-        },
         rust_analyzer = {
           enable = true,
           capabilities = capabilities,
-          cmd = {
-            "rustup",
-            "run",
-            "stable",
-            "rust-analyzer",
-          },
+          cmd = { "rust-analyzer" },
           root_dir = util.root_pattern("Cargo.toml", ".git"),
           settings = {
             ["rust-analyzer"] = {
-              check = {
-                command = "clippy",
-              },
+              check = { command = "clippy" },
               procMacro = { enable = true },
               cargo = {
                 allFeatures = true,
@@ -132,42 +51,22 @@ return {
             },
           },
         },
-        texlab = {
-          enable = true,
-          settings = {
-            texlab = {
-              build = {
-                executable = "latexmk",
-                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
-                onSave = false,
-              },
-              forwardSearch = {
-                executable = "zathura",
-                args = { "--synctex-forward", "%l:1:%f", "%p" },
-              },
-            },
-          },
-        },
-        clangd = {
+
+        vue_ls = {
           enable = true,
           settings = {},
         },
-        lua_ls = {
-          enable = true,
-          settings = {
-            Lua = {
-              format = {
-                enable = false,
-              },
-              workspace = { checkThirdParty = false },
-              telemetry = { enable = false },
-            },
-          },
-        },
+
         ts_ls = {
           enable = true,
           settings = {},
-          filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          filetypes = {
+            "typescript",
+            "typescriptreact",
+            "javascript",
+            "javascriptreact",
+            "vue",
+          },
           init_options = {
             plugins = {
               {
@@ -178,33 +77,8 @@ return {
             },
           },
         },
-        kotlin_language_server = {
-          enable = true,
-          settings = {},
-        },
-        intelephense = {
-          enable = true,
-          settings = {},
-        },
-        tailwindcss = {
-          enable = true,
-          settings = {},
-        },
-        pyright = {
-          enable = true,
-          filetypes = { "python" },
-          settings = {
-            python = {
-              analysis = {
-                typeCheckingMode = "basic",
-                autoImportCompletions = true,
-                diagnosticMode = "workspace",
-                useLibraryCodeForTypes = true,
-              },
-            },
-          },
-        },
-        [ruff_server or ""] = ruff_server and {
+
+        ruff = {
           enable = true,
           init_options = {
             settings = {
@@ -212,29 +86,46 @@ return {
             },
           },
           root_dir = util.root_pattern("pyproject.toml", ".git"),
-        } or nil,
-        emmet_language_server = {
-          enable = true,
-          filetypes = { "html", "javascriptreact", "svelte", "typescriptreact", "vue" },
-          settings = {},
-          init_options = {
-            includeLanguages = {
-              vue = "html",
-              ["vue-html"] = "html",
-            },
-          },
         },
       }
 
       for server, details in pairs(servers) do
         if details.enable then
-          lspconfig[server].setup({
+          vim.lsp.config(server, {
             on_attach = details.on_attach or with_fmt_control(server),
             settings = details.settings,
             capabilities = details.capabilities,
             cmd = details.cmd,
             filetypes = details.filetypes,
             init_options = details.init_options or {},
+            root_dir = details.root_dir,
+          })
+
+          local cfg = vim.lsp.config[server]
+          local filetypes = details.filetypes or cfg.filetypes
+
+          vim.api.nvim_create_autocmd("FileType", {
+            group = lsp_augroup,
+            pattern = filetypes,
+            callback = function(args)
+              local bufname = vim.api.nvim_buf_get_name(args.buf)
+              local root_dir = cfg.root_dir
+
+              if type(root_dir) == "function" then
+                root_dir = root_dir(bufname, args.buf)
+              end
+
+              if not root_dir then
+                return
+              end
+
+              vim.lsp.start(vim.tbl_deep_extend("force", cfg, {
+                name = server,
+                root_dir = root_dir,
+              }), {
+                bufnr = args.buf,
+              })
+            end,
           })
         end
       end
@@ -289,11 +180,12 @@ return {
     "williamboman/mason-lspconfig.nvim",
     opts = {
       ensure_installed = {
+        "rust_analyzer",
         "lua_ls",
         "ts_ls",
         "clangd",
         "tailwindcss",
-        "volar",
+        "vue_ls",
         "emmet_language_server",
         "ruff",
         "intelephense",

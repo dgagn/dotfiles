@@ -59,7 +59,7 @@ function M.setup()
 
   vim.opt.guicursor = ""
 
-  vim.opt.conceallevel = 1
+  vim.opt.conceallevel = 0
 end
 
 return M
