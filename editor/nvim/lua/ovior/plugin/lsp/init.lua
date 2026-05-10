@@ -44,6 +44,15 @@ return {
               cargo = {
                 allFeatures = true,
                 workspace = true,
+                targetDir = true,
+              },
+              files = {
+                watcher = "client",
+                exclude = {
+                  "target",
+                  "dist",
+                  "node_modules",
+                },
               },
               diagnostics = {
                 enable = true,
@@ -87,6 +96,24 @@ return {
           },
           root_dir = util.root_pattern("pyproject.toml", ".git"),
         },
+
+        lift_lsp = {
+          enable = true,
+          capabilities = capabilities,
+          cmd = {
+            "cargo",
+            "run",
+            "--manifest-path",
+            "/home/ovior/work/qraft-monolith/Cargo.toml",
+            "-p",
+            "lift-lsp",
+            "--quiet",
+          },
+          filetypes = { "lift" },
+          root_dir = function(fname)
+            return util.root_pattern(".git")(fname) or util.path.dirname(fname)
+          end,
+        },
       }
 
       for server, details in pairs(servers) do
@@ -112,7 +139,26 @@ return {
               local root_dir = cfg.root_dir
 
               if type(root_dir) == "function" then
-                root_dir = root_dir(bufname, args.buf)
+                local resolved_root
+                local ok, result = pcall(root_dir, args.buf, function(dir)
+                  resolved_root = dir
+                end)
+
+                if ok and resolved_root ~= nil then
+                  root_dir = resolved_root
+                elseif ok then
+                  local legacy_ok, legacy_result = pcall(root_dir, bufname)
+                  if not legacy_ok then
+                    return
+                  end
+                  root_dir = legacy_result
+                else
+                  local legacy_ok, legacy_result = pcall(root_dir, bufname)
+                  if not legacy_ok then
+                    return
+                  end
+                  root_dir = legacy_result
+                end
               end
 
               if not root_dir then

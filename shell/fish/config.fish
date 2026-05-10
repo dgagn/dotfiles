@@ -35,7 +35,7 @@ set -x GDBHISTFILE "$HOME/var/history/gdb"
 set -x CARGO_HOME "$XDG_DATA_HOME/cargo"
 set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 
-set -x DATABASE_URL "mariadb://localhost/test"
+# set -x DATABASE_URL "mariadb://localhost/test"
 
 # only true editor
 set -x EDITOR "nvim"
@@ -94,3 +94,4 @@ if test -d "$HOME/.config/.android/avd"
 end
 
 source "$CARGO_HOME/env.fish"
+direnv hook fish | source

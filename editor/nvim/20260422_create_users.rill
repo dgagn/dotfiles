@@ -1,0 +1,4 @@
+create users {
+    id
+    name text nullable
+}
