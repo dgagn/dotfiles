@@ -58,15 +58,47 @@ local function mkdirp()
 end
 
 local function comment()
-  vim.api.nvim_create_autocmd({ "Filetype" }, {
+  vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = { "*" },
     callback = function()
-      vim.opt.formatoptions = vim.opt.formatoptions + {
+      vim.opt_local.formatoptions = vim.opt_local.formatoptions + {
         o = false,
       }
     end,
     group = augroup("paste"),
     desc = "Disable auto-commenting on new lines",
+  })
+end
+
+local function format()
+  local function use_builtin_gq(bufnr)
+    if vim.bo[bufnr].textwidth == 0 then
+      vim.bo[bufnr].textwidth = 80
+    end
+
+    vim.bo[bufnr].formatexpr = ""
+  end
+
+  vim.api.nvim_create_autocmd({ "FileType" }, {
+    pattern = { "*" },
+    callback = function(args)
+      use_builtin_gq(args.buf)
+    end,
+    group = augroup("format"),
+    desc = "Keep gq using the built-in formatter with a useful width",
+  })
+
+  vim.api.nvim_create_autocmd({ "LspAttach" }, {
+    pattern = { "*" },
+    callback = function(args)
+      vim.schedule(function()
+        if vim.api.nvim_buf_is_valid(args.buf) then
+          use_builtin_gq(args.buf)
+        end
+      end)
+    end,
+    group = augroup("lsp_format"),
+    desc = "Prevent LSP formatexpr from overriding gq",
   })
 end
 
@@ -76,6 +108,7 @@ function M.setup()
   highlight_whitespace()
   mkdirp()
   comment()
+  format()
 end
 
 return M

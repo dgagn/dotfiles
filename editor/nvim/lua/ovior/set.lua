@@ -42,6 +42,7 @@ function M.setup()
   vim.o.completeopt = "menuone,noselect"
 
   vim.opt.colorcolumn = "80"
+  vim.opt.textwidth = 80
 
   -- set expandtab softtabtab=4 shiftwidth=4 tabstop=8
   vim.opt.expandtab = true

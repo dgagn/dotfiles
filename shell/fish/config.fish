@@ -39,7 +39,7 @@ set -x RUSTUP_HOME "$XDG_DATA_HOME/rustup"
 
 # only true editor
 set -x EDITOR "nvim"
-set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$HOME/var/share:$HOME/ida-home-pc-9.2:$PATH"
+set -x PATH "$CARGO_HOME/bin:$HOME/.local/bin:$HOME/.local/share/nvim/mason/bin:$HOME/.config/composer/vendor/bin:/opt/ida:/opt/android-studio/bin:$HOME/var/share:$HOME/ida-home-pc-9.2:$HOME/var/share:$PATH"
 
 set -x TEXMFHOME "$XDG_DATA_HOME/texmf"
 set -x TEXMFVAR "$XDG_CACHE_HOME/texlive/texmf-var"

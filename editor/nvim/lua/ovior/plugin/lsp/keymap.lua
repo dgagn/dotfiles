@@ -3,6 +3,10 @@ local M = {}
 function M.on_attach(client, bufnr)
   local has_cmp, cmp = pcall(require, "cmp")
 
+  -- Keep gq using Vim's built-in paragraph/comment formatter instead of an
+  -- LSP formatexpr. LSP formatting is still available with <leader>fm.
+  vim.bo[bufnr].formatexpr = ""
+
   local lspmap = function(mode, keys, func)
     vim.keymap.set(mode, keys, func, { buffer = bufnr })
   end
