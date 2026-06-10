@@ -41,6 +41,8 @@ function M.setup()
   -- check here
   vim.o.completeopt = "menuone,noselect"
 
+  vim.o.inccommand = "split"
+
   vim.opt.colorcolumn = "80"
   vim.opt.textwidth = 80
 

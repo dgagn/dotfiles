@@ -102,6 +102,43 @@ local function format()
   })
 end
 
+local function react_indent()
+  local function use_runtime_indent(bufnr)
+    vim.schedule(function()
+      if not vim.api.nvim_buf_is_valid(bufnr) then
+        return
+      end
+
+      local filetype = vim.bo[bufnr].filetype
+      if filetype == "typescriptreact" then
+        vim.bo[bufnr].indentexpr = "v:lua.require'ovior.indent'.react()"
+        vim.bo[bufnr].indentkeys = "0{,0},0),0],0\\,,!^F,o,O,e"
+      elseif filetype == "javascriptreact" then
+        vim.bo[bufnr].indentexpr = "v:lua.require'ovior.indent'.react()"
+        vim.bo[bufnr].indentkeys = vim.bo[bufnr].indentkeys .. ",0],0)"
+      else
+        return
+      end
+
+      vim.bo[bufnr].autoindent = true
+      vim.bo[bufnr].smartindent = false
+      vim.bo[bufnr].cindent = false
+
+      vim.keymap.set("n", "o", "o<c-f>", { buffer = bufnr, silent = true })
+      vim.keymap.set("n", "O", "O<c-f>", { buffer = bufnr, silent = true })
+    end)
+  end
+
+  vim.api.nvim_create_autocmd({ "FileType", "BufEnter" }, {
+    pattern = { "typescriptreact", "javascriptreact" },
+    callback = function(args)
+      use_runtime_indent(args.buf)
+    end,
+    group = augroup("react_indent"),
+    desc = "Use Vim's React indent rules instead of Treesitter indent",
+  })
+end
+
 function M.setup()
   yank()
   save_old_loc()
@@ -109,6 +146,7 @@ function M.setup()
   mkdirp()
   comment()
   format()
+  react_indent()
 end
 
 return M

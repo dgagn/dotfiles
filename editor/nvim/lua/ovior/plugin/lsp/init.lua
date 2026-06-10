@@ -237,6 +237,14 @@ return {
         "intelephense",
         "pyright",
       },
+      automatic_enable = {
+        exclude = {
+          "rust_analyzer",
+          "vue_ls",
+          "ts_ls",
+          "ruff",
+        },
+      },
     },
   },
   {

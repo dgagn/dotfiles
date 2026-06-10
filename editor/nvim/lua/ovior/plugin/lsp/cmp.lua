@@ -85,6 +85,16 @@ return {
 
         sources = {
           default = { "lsp", "path", "snippets", "buffer" },
+          providers = {
+            lsp = {
+              transform_items = function(_, items)
+                local kinds = require("blink.cmp.types").CompletionItemKind
+                return vim.tbl_filter(function(item)
+                  return item.kind ~= kinds.Text and item.client_name ~= "emmet_language_server"
+                end, items)
+              end,
+            },
+          },
         },
         signature = { enabled = false },
       }
